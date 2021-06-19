@@ -1,6 +1,6 @@
 # manylinux-cuda
 
-This docker image contains the full installation of **NVIDIA CUDA toolkit**, currently at **version 11.3**. The image is built based on [`quay.io/pypa/manylinux_2_24_x86_64`](https://github.com/pypa/manylinux). 
+This dockerfile installs **NVIDIA CUDA toolkit**, currently at **version 11.3**, on the top of [`quay.io/pypa/manylinux_2_24_x86_64`](https://github.com/pypa/manylinux) docker image.
 
 Obtain this docker image from [Dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda) by:
 

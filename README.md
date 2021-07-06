@@ -6,11 +6,11 @@ This dockerfile installs **NVIDIA CUDA toolkit**, on the top of [`quay.io/pypa/m
 
 Obtain these docker images from Dockerhub for two cuda versions **10.2** and **11.4**, respectively by
 
-* [Cuda-10](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_10):
+* For cuda-10 ([see on dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_10)):
 
       docker pull sameli/manylinux2014_x86_64_cuda_10
 
-* [Cuda-11](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_10):
+* For cuda-11 ([see on dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_10)):
 
       docker pull sameli/manylinux2014_x86_64_cuda_11
 
@@ -20,11 +20,11 @@ To run the container interactively:
 
 * For cuda 10
 
-    docker run -it --entrypoint /bin/bash sameli/manylinux2014_x86_64_cuda_10
+      docker run -it --entrypoint /bin/bash sameli/manylinux2014_x86_64_cuda_10
 
 * For cuda 11
 
-    docker run -it --entrypoint /bin/bash sameli/manylinux2014_x86_64_cuda_11
+      docker run -it --entrypoint /bin/bash sameli/manylinux2014_x86_64_cuda_11
 
 #### Environment variables
 
@@ -43,26 +43,26 @@ The `nvcc` executable is available on the `PATH`. To check the cuda version, run
 
 * For cuda 10:
 
-    docker run -t sameli/manylinux2014_x86_64_cuda_10 nvcc --version
+      docker run -t sameli/manylinux2014_x86_64_cuda_10 nvcc --version
 
   The output of the above commands for is:
 
-    nvcc: NVIDIA (R) Cuda compiler driver
-    Copyright (c) 2005-2019 NVIDIA Corporation
-    Built on Wed_Oct_23_19:24:38_PDT_2019
-    Cuda compilation tools, release 10.2, V10.2.89
+      nvcc: NVIDIA (R) Cuda compiler driver
+      Copyright (c) 2005-2019 NVIDIA Corporation
+      Built on Wed_Oct_23_19:24:38_PDT_2019
+      Cuda compilation tools, release 10.2, V10.2.89
     
 * For cuda 11:
 
-    docker run -t sameli/manylinux2014_x86_64_cuda_11 nvcc --version
+      docker run -t sameli/manylinux2014_x86_64_cuda_11 nvcc --version
     
   The output of the above commands for is:
 
-    nvcc: NVIDIA (R) Cuda compiler driver
-    Copyright (c) 2005-2021 NVIDIA Corporation
-    Built on Wed_Jun__2_19:15:15_PDT_2021
-    Cuda compilation tools, release 11.4, V11.4.48
-    Build cuda_11.4.r11.4/compiler.30033411_0
+      nvcc: NVIDIA (R) Cuda compiler driver
+      Copyright (c) 2005-2021 NVIDIA Corporation
+      Built on Wed_Jun__2_19:15:15_PDT_2021
+      Cuda compilation tools, release 11.4, V11.4.48
+      Build cuda_11.4.r11.4/compiler.30033411_0
 
 #### How to build images
 

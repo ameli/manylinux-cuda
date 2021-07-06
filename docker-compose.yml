@@ -1,0 +1,9 @@
+version: '3'
+services:
+    cuda_10:
+        build: ./docker/cuda-10
+        image: sameli/manylinux2014_x86_64_cuda_10
+
+    cuda_11:
+        build: ./docker/cuda-11
+        image: sameli/manylinux2014_x86_64_cuda_11

@@ -20,11 +20,11 @@ To run the container interactively:
 
 * For CUDA 10
 
-      docker run -it --entrypoint /bin/bash sameli/manylinux2014_x86_64_cuda_10
+      docker run -it sameli/manylinux2014_x86_64_cuda_10
 
 * For CUDA 11
 
-      docker run -it --entrypoint /bin/bash sameli/manylinux2014_x86_64_cuda_11
+      docker run -it sameli/manylinux2014_x86_64_cuda_11
 
 ### Environment variables
 

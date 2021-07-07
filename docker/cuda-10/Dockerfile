@@ -51,9 +51,10 @@ ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 # Cuda 10 is not compatible with gcc version higher than 8.
 RUN yum -y install centos-release-scl
 RUN yum -y install devtoolset-8-gcc devtoolset-8-gcc-c++
-RUN ln -s /usr/bin/gcc-8 /usr/local/cuda/bin/gcc
-RUN ln -s /usr/bin/g++-8 /usr/local/cuda/bin/g++
-RUN scl enable devtoolset-8 -- bash
+# RUN ln -s /opt/rh/devtoolset-8/root/bin/gcc /usr/local/cuda/bin/gcc
+# RUN ln -s /opt/rh/devtoolset-8/root/bin/g++ /usr/local/cuda/bin/g++
+# RUN scl enable devtoolset-8 -- bash
+ENV PATH=/opt/rh/devtoolset-8/root/bin/:$PATH
 
 # --------
 # Commands

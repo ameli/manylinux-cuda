@@ -1,32 +1,32 @@
 # manylinux-cuda
 
-This dockerfile installs **NVIDIA CUDA toolkit**, on the top of [`quay.io/pypa/manylinux_2_24_x86_64`](https://github.com/pypa/manylinux) docker image.
+Dockerfiles to install **NVIDIA CUDA toolkit**, on the top of [`quay.io/pypa/manylinux_2_24_x86_64`](https://github.com/pypa/manylinux) docker image.
 
-#### Download images
+### Download images
 
-Obtain these docker images from Dockerhub for two cuda versions **10.2** and **11.4**, respectively by
+Obtain these docker images from Dockerhub for two CUDA versions **10.2** and **11.4**, respectively by
 
-* For cuda-10 ([see on dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_10)):
+* For CUDA 10 ([see on Dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_10)):
 
       docker pull sameli/manylinux2014_x86_64_cuda_10
 
-* For cuda-11 ([see on dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_10)):
+* For CUDA 11 ([see on Dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_11)):
 
       docker pull sameli/manylinux2014_x86_64_cuda_11
 
-#### Run container
+### Run container
 
 To run the container interactively:
 
-* For cuda 10
+* For CUDA 10
 
       docker run -it --entrypoint /bin/bash sameli/manylinux2014_x86_64_cuda_10
 
-* For cuda 11
+* For CUDA 11
 
       docker run -it --entrypoint /bin/bash sameli/manylinux2014_x86_64_cuda_11
 
-#### Environment variables
+### Environment variables
 
 The following environment variables are defined:
 
@@ -37,11 +37,11 @@ The following environment variables are defined:
 * `CUDADIR=/usr/local/cuda`
 * `LD_LIBRARY_PATH=/usr/local/cuda/lib64:${LD_LIBRARY_PATH}`
 
-#### Check versions
+### Check CUDA versions
 
-The `nvcc` executable is available on the `PATH`. To check the cuda version, run:
+The `nvcc` executable is available on the `PATH`. To check the CUDA version, run:
 
-* For cuda 10:
+* For CUDA 10:
 
       docker run -t sameli/manylinux2014_x86_64_cuda_10 nvcc --version
 
@@ -52,7 +52,7 @@ The `nvcc` executable is available on the `PATH`. To check the cuda version, run
       Built on Wed_Oct_23_19:24:38_PDT_2019
       Cuda compilation tools, release 10.2, V10.2.89
     
-* For cuda 11:
+* For CUDA 11:
 
       docker run -t sameli/manylinux2014_x86_64_cuda_11 nvcc --version
     
@@ -64,7 +64,7 @@ The `nvcc` executable is available on the `PATH`. To check the cuda version, run
       Cuda compilation tools, release 11.4, V11.4.48
       Build cuda_11.4.r11.4/compiler.30033411_0
 
-#### How to build images
+### How to build images
 
 Get this repository:
 
@@ -76,7 +76,7 @@ Build docker with `docker-compose`:
     sudo apt install docker-compose
     docker-compose build
 
-Push to dockerhub:
+Push to Dockerhub:
 
     docker login
     docker-compose push

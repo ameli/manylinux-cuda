@@ -44,6 +44,16 @@ ENV CUDA_PATH=/usr/local/cuda
 ENV CUDADIR=/usr/local/cuda
 ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
 
+# ------------------
+# Set Compatible GCC
+# ------------------
+
+# Cuda 10 is not compatible with gcc version higher than 8.
+ENV MAX_GCC_VERSION=8
+RUN yum install gcc-$MAX_GCC_VERSION g++-$MAX_GCC_VERSION
+RUN ln -s /usr/bin/gcc-$MAX_GCC_VERSION /usr/local/cuda/bin/gcc
+RUN ln -s /usr/bin/g++-$MAX_GCC_VERSION /usr/local/cuda/bin/g++
+
 # --------
 # Commands
 # --------

@@ -14,7 +14,7 @@ Obtain docker images from Dockerhub for two CUDA versions **10.2** and **11.4**,
 
       docker pull sameli/manylinux2014_x86_64_cuda_11
 
-### Run container
+### Run containers
 
 To run the container interactively:
 

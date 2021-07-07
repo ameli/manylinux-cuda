@@ -1,10 +1,10 @@
 # manylinux-cuda
 
-Dockerfiles to install **NVIDIA CUDA toolkit**, on the top of [`quay.io/pypa/manylinux_2_24_x86_64`](https://github.com/pypa/manylinux) docker image.
+Dockerfiles to install **NVIDIA CUDA toolkit**, on the top of [`quay.io/pypa/manylinux2014_x86_64`](https://github.com/pypa/manylinux) docker image.
 
 ### Download images
 
-Obtain these docker images from Dockerhub for two CUDA versions **10.2** and **11.4**, respectively by
+Obtain docker images from Dockerhub for two CUDA versions **10.2** and **11.4**, respectively as follows.
 
 * For CUDA 10 ([see on Dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_10)):
 

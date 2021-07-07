@@ -4,11 +4,11 @@
 
 # -----------------------------------------------------------------------------
 # How to build
-#   $ docker build -t sameli/manylinux2014_x86_64_cuda -f <This-Filename> .
+#   $ docker build -t sameli/manylinux2014_x86_64_cuda_10 -f <This-Filename> .
 #
 # How to run:
 #   $ docker run -it -v/host_dir:/image_dir --entrypoint /bin/bash \
-#         manylinux2014_x86_64_cuda
+#         manylinux2014_x86_64_cuda_10
 # -----------------------------------------------------------------------------
 
 # -----------------

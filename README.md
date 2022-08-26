@@ -4,7 +4,7 @@ Dockerfiles to install **NVIDIA CUDA toolkit**, on the top of [`quay.io/pypa/man
 
 ### Download images
 
-Obtain docker images from Dockerhub for two CUDA versions **10.2** and **11.4**, respectively as follows.
+Obtain docker images from Dockerhub for two CUDA versions **10.2** and **11.7**, respectively as follows.
 
 * For CUDA 10 ([see on Dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_10)):
 
@@ -58,11 +58,10 @@ The `nvcc` executable is available on the `PATH`. To check the CUDA version, run
     
   The output of the above commands for is:
 
-      nvcc: NVIDIA (R) Cuda compiler driver
-      Copyright (c) 2005-2021 NVIDIA Corporation
-      Built on Wed_Jun__2_19:15:15_PDT_2021
-      Cuda compilation tools, release 11.4, V11.4.48
-      Build cuda_11.4.r11.4/compiler.30033411_0
+      Copyright (c) 2005-2022 NVIDIA Corporation
+      Built on Wed_Jun__8_16:49:14_PDT_2022
+      Cuda compilation tools, release 11.7, V11.7.99
+      Build cuda_11.7.r11.7/compiler.31442593_0
 
 ### How to build images
 

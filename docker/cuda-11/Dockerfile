@@ -18,7 +18,7 @@
 FROM quay.io/pypa/manylinux2014_x86_64
 
 MAINTAINER Siavash Ameli <samei@berkeley.edu>
-LABEL Description="manylinux2014_x86_64 with cuda 11.4"
+LABEL Description="manylinux2014_x86_64 with cuda 11.7"
 
 # ------------
 # Install cuda

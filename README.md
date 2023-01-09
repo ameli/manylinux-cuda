@@ -4,17 +4,17 @@ Dockerfiles to install **NVIDIA CUDA toolkit**, on the top of [`quay.io/pypa/man
 
 ### Download images
 
-Obtain docker images from Dockerhub for two CUDA versions **10.2**, **11.7**, and **12.0* respectively as follows.
+Obtain docker images from Dockerhub for two CUDA versions **10.2**, **11.7**, and **12.0** respectively as follows.
 
-* For CUDA 10 ([see on Dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_10)):
+* For CUDA 10 ([see on Dockerhub](https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_10)):
 
       docker pull sameli/manylinux2014_x86_64_cuda_10
 
-* For CUDA 11 ([see on Dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_11)):
+* For CUDA 11 ([see on Dockerhub](https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_11)):
 
       docker pull sameli/manylinux2014_x86_64_cuda_11
 
-* For CUDA 12 ([see on Dockerhub](https://hub.docker.com/repository/docker/sameli/manylinux2014_x86_64_cuda_12)):
+* For CUDA 12 ([see on Dockerhub](https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_12)):
 
       docker pull sameli/manylinux2014_x86_64_cuda_12
 
@@ -77,10 +77,11 @@ The `nvcc` executable is available on the `PATH`. To check the CUDA version, run
     
   The output of the above commands for is:
 
-      Copyright (c) 2005-2023 NVIDIA Corporation
-      Built on Wed_Jun__8_16:49:14_PDT_2022
-      Cuda compilation tools, release 12.0, V12.0.00
-      Build cuda_12.0.r12.0/compiler.31442593_0
+      Copyright (c) 2005-2022 NVIDIA Corporation
+      Built on Mon_Oct_24_19:12:58_PDT_2022
+      Cuda compilation tools, release 12.0, V12.0.76
+      Build cuda_12.0.r12.0/compiler.31968024_0
+
 
 ### How to build images
 

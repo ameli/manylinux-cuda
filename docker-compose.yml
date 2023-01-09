@@ -7,3 +7,7 @@ services:
     cuda_11:
         build: ./docker/cuda-11
         image: sameli/manylinux2014_x86_64_cuda_11
+
+    cuda_12:
+        build: ./docker/cuda-12
+        image: sameli/manylinux2014_x86_64_cuda_12

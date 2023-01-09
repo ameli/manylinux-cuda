@@ -25,10 +25,14 @@ LABEL Description="manylinux2014_x86_64 with cuda 11.7"
 # ------------
 
 RUN yum install -y yum-utils
-RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
+RUN yum install -y wget
+
+RUN wget https://developer.download.nvidia.com/compute/cuda/11.7.0/local_installers/cuda-repo-rhel7-11-7-local-11.7.0_515.43.04-1.x86_64.rpm
+RUN rpm -i cuda-repo-rhel7-11-7-local-11.7.0_515.43.04-1.x86_64.rpm
 RUN yum clean all
 RUN yum -y install nvidia-driver-latest-dkms cuda
 RUN yum -y install cuda-drivers
+RUN rm cuda-repo-rhel7-11-7-local-11.7.0_515.43.04-1.x86_64.rpm
 
 # -------------------------
 # Set environment variables

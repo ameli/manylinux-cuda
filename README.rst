@@ -6,7 +6,7 @@ Dockerfiles to install **NVIDIA CUDA toolkit**, on the top of `quay.io/pypa/many
 Download Images
 ===============
 
-Obtain the docker images from Dockerhub for two CUDA versions **10.2**, **11.7**, **11.8**, and **12.0** respectively as follows.
+Obtain the docker images from Dockerhub for the following CUDA versions:
 
 * For CUDA 10.2 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_10.2>`__) |deploy-docker-10-2|
 

@@ -41,7 +41,7 @@ Obtain the docker images from Dockerhub for the following CUDA versions:
 Run Containers
 ==============
 
-To run the container interactively:
+Run containers interactively:
 
 * For CUDA 10.2
 

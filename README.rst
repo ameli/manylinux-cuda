@@ -8,31 +8,31 @@ Download Images
 
 Obtain the docker images from Dockerhub for two CUDA versions **10.2**, **11.7**, **11.8**, and **12.0** respectively as follows.
 
-* For CUDA 10.2 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_10.2>`__) |docker-pull-10-2| |deploy-docker-10-2|
+* For CUDA 10.2 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_10.2>`__) |deploy-docker-10-2|
 
   ::
 
       docker pull sameli/manylinux2014_x86_64_cuda_10.2
 
-* For CUDA 11.7 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_11.7>`__) |docker-pull-11-7| |deploy-docker-11-7|
+* For CUDA 11.7 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_11.7>`__) |deploy-docker-11-7|
 
   ::
 
       docker pull sameli/manylinux2014_x86_64_cuda_11.7
 
-* For CUDA 11.8 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_11.8>`__) |docker-pull-11-8| |deploy-docker-11-8|
+* For CUDA 11.8 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_11.8>`__) |deploy-docker-11-8|
 
   ::
 
       docker pull sameli/manylinux2014_x86_64_cuda_11.8
 
-* For CUDA 12.0 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_12.0>`__) |docker-pull-12-0| |deploy-docker-12-0|
+* For CUDA 12.0 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_12.0>`__) |deploy-docker-12-0|
 
   ::
 
       docker pull sameli/manylinux2014_x86_64_cuda_12.0
 
-* For CUDA 12.2 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_12.2>`__) |docker-pull-12-2| |deploy-docker-12-2|
+* For CUDA 12.2 (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_12.2>`__) |deploy-docker-12-2|
 
   ::
 

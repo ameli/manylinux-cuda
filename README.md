@@ -4,7 +4,7 @@ Dockerfiles to install **NVIDIA CUDA toolkit**, on the top of [`quay.io/pypa/man
 
 ### Download images
 
-Obtain docker images from Dockerhub for two CUDA versions **10.2**, **11.7**, **11.8**, and **12.0** respectively as follows.
+Obtain the docker images from Dockerhub for two CUDA versions **10.2**, **11.7**, **11.8**, and **12.0** respectively as follows.
 
 * For CUDA 10.2 ([see on Dockerhub](https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_10.2)):
 
@@ -69,7 +69,7 @@ The `nvcc` executable is available on the `PATH`. To check the CUDA version, run
 
       docker run -t sameli/manylinux2014_x86_64_cuda_10.2 nvcc --version
 
-  The output of the above commands for is:
+  The output of the above command is:
 
       nvcc: NVIDIA (R) Cuda compiler driver
       Copyright (c) 2005-2019 NVIDIA Corporation
@@ -80,7 +80,7 @@ The `nvcc` executable is available on the `PATH`. To check the CUDA version, run
 
       docker run -t sameli/manylinux2014_x86_64_cuda_11.7 nvcc --version
     
-  The output of the above commands for is:
+  The output of the above command is:
 
       Copyright (c) 2005-2022 NVIDIA Corporation
       Built on Wed_Jun__8_16:49:14_PDT_2022
@@ -91,7 +91,7 @@ The `nvcc` executable is available on the `PATH`. To check the CUDA version, run
 
       docker run -t sameli/manylinux2014_x86_64_cuda_11.8 nvcc --version
     
-  The output of the above commands for is:
+  The output of the above command is:
 
       Copyright (c) 2005-2022 NVIDIA Corporation
       Built on Wed_Jun__8_16:49:14_PDT_2022
@@ -102,7 +102,7 @@ The `nvcc` executable is available on the `PATH`. To check the CUDA version, run
 
       docker run -t sameli/manylinux2014_x86_64_cuda_12.0 nvcc --version
     
-  The output of the above commands for is:
+  The output of the above command is:
 
       Copyright (c) 2005-2022 NVIDIA Corporation
       Built on Mon_Oct_24_19:12:58_PDT_2022
@@ -113,7 +113,7 @@ The `nvcc` executable is available on the `PATH`. To check the CUDA version, run
 
       docker run -t sameli/manylinux2014_x86_64_cuda_12.2 nvcc --version
     
-  The output of the above commands for is:
+  The output of the above command is:
 
       Copyright (c) 2005-2022 NVIDIA Corporation
       Built on Mon_Oct_24_19:12:58_PDT_2022

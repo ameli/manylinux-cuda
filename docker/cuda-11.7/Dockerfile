@@ -4,11 +4,11 @@
 
 # -----------------------------------------------------------------------------
 # How to build
-#   $ docker build -t sameli/manylinux2014_x86_64_cuda_10 -f <This-Filename> .
+#   $ docker build -t sameli/manylinux2014_x86_64_cuda_11.7 -f <This-Filename> .
 #
 # How to run:
 #   $ docker run -it -v/host_dir:/image_dir --entrypoint /bin/bash \
-#         manylinux2014_x86_64_cuda_10
+#         manylinux2014_x86_64_cuda_11.7
 # -----------------------------------------------------------------------------
 
 # -----------------
@@ -18,7 +18,7 @@
 FROM quay.io/pypa/manylinux2014_x86_64
 
 MAINTAINER Siavash Ameli <samei@berkeley.edu>
-LABEL Description="manylinux2014_x86_64 with cuda 10.2"
+LABEL Description="manylinux2014_x86_64 with cuda 11.7"
 
 # ------------
 # Install cuda
@@ -27,12 +27,12 @@ LABEL Description="manylinux2014_x86_64 with cuda 10.2"
 RUN yum install -y yum-utils
 RUN yum install -y wget
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-rhel7-10-2-local-10.2.89-440.33.01-1.0-1.x86_64.rpm
-RUN rpm -i cuda-repo-rhel7-10-2-local-10.2.89-440.33.01-1.0-1.x86_64.rpm
+RUN wget https://developer.download.nvidia.com/compute/cuda/11.7.0/local_installers/cuda-repo-rhel7-11-7-local-11.7.0_515.43.04-1.x86_64.rpm
+RUN rpm -i cuda-repo-rhel7-11-7-local-11.7.0_515.43.04-1.x86_64.rpm
 RUN yum clean all
 RUN yum -y install nvidia-driver-latest-dkms cuda
 RUN yum -y install cuda-drivers
-RUN rm cuda-repo-rhel7-10-2-local-10.2.89-440.33.01-1.0-1.x86_64.rpm
+RUN rm cuda-repo-rhel7-11-7-local-11.7.0_515.43.04-1.x86_64.rpm
 
 # -------------------------
 # Set environment variables
@@ -44,18 +44,6 @@ ENV CUDA_ROOT=/usr/local/cuda
 ENV CUDA_PATH=/usr/local/cuda
 ENV CUDADIR=/usr/local/cuda
 ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
-
-# ------------------
-# Set Compatible GCC
-# ------------------
-
-# Cuda 10 is not compatible with gcc version higher than 8.
-RUN yum -y install centos-release-scl
-RUN yum -y install devtoolset-8-gcc devtoolset-8-gcc-c++
-# RUN ln -s /opt/rh/devtoolset-8/root/bin/gcc /usr/local/cuda/bin/gcc
-# RUN ln -s /opt/rh/devtoolset-8/root/bin/g++ /usr/local/cuda/bin/g++
-# RUN scl enable devtoolset-8 -- bash
-ENV PATH=/opt/rh/devtoolset-8/root/bin/:$PATH
 
 # --------
 # Commands

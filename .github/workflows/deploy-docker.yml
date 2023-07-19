@@ -9,7 +9,7 @@ on:
             - published
 
 jobs:
-    build-cuda-10-0:
+    build-cuda-10-2:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -21,13 +21,13 @@ jobs:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-            - name: Build and push Cuda-10.0
+            - name: Build and push Cuda-10.2
               id: docker_build
               uses: docker/build-push-action@v3
               with:
                   push: true
-                  file: ./docker/cuda-10.0/Dockerfile
-                  tags: sameli/manylinux2014_x86_64_cuda_10.0:latest
+                  file: ./docker/cuda-10.2/Dockerfile
+                  tags: sameli/manylinux2014_x86_64_cuda_10.2:latest
 
             - name: Image digest
               run: echo ${{ steps.docker_build.outputs.digest }}

@@ -65,9 +65,9 @@ The following environment variables are defined:
 
 The `nvcc` executable is available on the `PATH`. To check the CUDA version, run:
 
-* For CUDA 10.0:
+* For CUDA 10.2:
 
-      docker run -t sameli/manylinux2014_x86_64_cuda_10.0 nvcc --version
+      docker run -t sameli/manylinux2014_x86_64_cuda_10.2 nvcc --version
 
   The output of the above commands for is:
 
@@ -95,7 +95,7 @@ The `nvcc` executable is available on the `PATH`. To check the CUDA version, run
 
       Copyright (c) 2005-2022 NVIDIA Corporation
       Built on Wed_Jun__8_16:49:14_PDT_2022
-      Cuda compilation tools, release 11.7, V11.8.00
+      Cuda compilation tools, release 11.8, V11.8.00
       Build cuda_11.8.r11.8/compiler.31442593_0
 
 * For CUDA 12.0:

@@ -190,6 +190,19 @@ Push to Dockerhub:
     docker login
     docker-compose push
 
+Other CUDA Versions
+===================
+
+To request a docker image with for a specific CUDA version, feel free to create a `GitHub issues <https://github.com/ameli/manylinux-cuda/issues>`_.
+
+License
+=======
+
+|license|
+
+.. |license| image:: https://img.shields.io/github/license/ameli/manylinux-cuda
+   :target: https://opensource.org/licenses/BSD-3-Clause
+
 .. |deploy-docker-10-2| image:: https://img.shields.io/github/actions/workflow/status/ameli/manylinux-cuda/deploy-docker-10-2.yml?label=build%20docker
    :target: https://github.com/ameli/manylinux-cuda/actions?query=workflow%3Adeploy-docker-10-2
 .. |deploy-docker-11-7| image:: https://img.shields.io/github/actions/workflow/status/ameli/manylinux-cuda/deploy-docker-11-7.yml?label=build%20docker

@@ -193,7 +193,7 @@ Push to Dockerhub:
 Other CUDA Versions
 ===================
 
-To request a docker image with for a specific CUDA version, feel free to create a `GitHub issues <https://github.com/ameli/manylinux-cuda/issues>`_.
+To request a docker image for a specific CUDA version, feel free to create a `GitHub issue <https://github.com/ameli/manylinux-cuda/issues>`_.
 
 License
 =======

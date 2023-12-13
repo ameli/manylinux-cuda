@@ -24,7 +24,7 @@ manylinux2014_aarch64_cuda_12_3_cibw: &MANYLINUX2014_AARCH64_CUDA_12_3_CIBW
 # build docker manylinux2014 aarch64 cuda 12-3
 # ============================================
 
-build_docker_manylinux2014_aarch64_cuda_12_3task:
+build_docker_manylinux2014_aarch64_cuda_12_3_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   compute_engine_instance:
     image_project: cirrus-images
@@ -33,16 +33,6 @@ build_docker_manylinux2014_aarch64_cuda_12_3task:
     platform: linux
     cpu: 1
     memory: 8G
-  # matrix:
-  #   - env:
-  #       CIBW_BUILD: "cp39-manylinux_aarch64"
-  #       # EXPECT_CPU_FEATURES: NEON NEON_FP16 NEON_VFPV4 ASIMD ASIMDHP ASIMDDP ASIMDFHM
-  #   - env:
-  #       CIBW_BUILD: "cp310-manylinux_aarch64"
-  #   - env:
-  #       CIBW_BUILD: "cp311-manylinux_aarch64"
-  #   - env:
-  #       CIBW_BUILD: "cp312-manylinux_aarch64"
   env:
     DOCKERHUB_TOKEN: ENCRYPTED[!05c76b305df7bb81c59faa33981e2cf4d08c4aa6f1c0313645815c5729f42b6d9db7f2829260ca8cb1e92637151670ad!]
 
@@ -55,40 +45,37 @@ build_docker_manylinux2014_aarch64_cuda_12_3task:
     # Build source
     docker build -t sameli/manylinux2014_aarch64_cuda_12.3 -f ./docker/manylinux2014_aarch64_cuda_12.3/Dockerfile .
 
-    ls
+    docker images
 
     # Upload image to dockerhub
     DOCKERHUB_USERNAME="sameli"
     docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_TOKEN}
 
+    # Upload to dockerhub
+    docker push sameli/manylinux2014_aarch64_cuda_12.3
 
-# ========================
-# conda test linux aarch64
-# ========================
 
-# conda_test_linux_aarch64_task:
-#   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
-#   compute_engine_instance:
-#     image_project: cirrus-images
-#     image: family/docker-builder-arm64
-#     architecture: arm64
-#     platform: linux
-#     cpu: 1
-#     memory: 4G
-#   depends_on:
-#     - conda_build_upload_conda_linux_aarch64
-#
-#   test_script: |
-#     source ./tools/wheels/upload_wheels.sh
-#     install_anaconda "linux_aarch64"
-#     set -x
-#     CONDA_BIN_DIR=$(dirname `which conda`)
-#     PYTHON=${CONDA_BIN_DIR}/python
-#     uname -m
-#     ${PYTHON} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
-#     mv detkit detkit_do_dot_import
-#     conda install -c s-ameli detkit -y
-#     ${PYTHON} -m pip install --upgrade pip
-#     ${PYTHON} -m pip install numpy
-#     ${PYTHON} -m pip install -r tests/requirements.txt
-#     ${PYTHON} -m pytest
+# ============================================
+# test docker manylinux2014 aarch64 cuda 12-3
+# ============================================
+
+test_docker_manylinux2014_aarch64_cuda_12_3_task:
+  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
+  compute_engine_instance:
+    image_project: cirrus-images
+    image: family/docker-builder-arm64
+    architecture: arm64
+    platform: linux
+    cpu: 1
+    memory: 8G
+  depends_on:
+    - build_docker_manylinux2014_aarch64_cuda_12_3
+
+  test_script: |
+
+    # Install docker
+    source ./tools/scripts/docker_utils.sh
+    install_docker
+
+    # Test dockerhub image
+    docker run -t sameli/manylinux2014_aarch64_cuda_12.3 nvcc --version

@@ -44,7 +44,7 @@ build_docker_manylinux2014_aarch64_cuda_12_3task:
   #   - env:
   #       CIBW_BUILD: "cp312-manylinux_aarch64"
   env:
-  DOCKERHUB_TOKEN: ENCRYPTED[!05c76b305df7bb81c59faa33981e2cf4d08c4aa6f1c0313645815c5729f42b6d9db7f2829260ca8cb1e92637151670ad!]
+    DOCKERHUB_TOKEN: ENCRYPTED[!05c76b305df7bb81c59faa33981e2cf4d08c4aa6f1c0313645815c5729f42b6d9db7f2829260ca8cb1e92637151670ad!]
 
   build_script: |
 

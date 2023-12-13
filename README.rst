@@ -229,7 +229,12 @@ Build docker with ``docker-compose``:
 ::
 
     sudo apt install docker-compose
-    docker-compose build
+
+    # Build images for x86_64 arch
+    docker-compose build -f docker-compose-x86_64.yml
+
+    # Build images for aarch64 arch
+    docker-compose build -f docker-compose-aarch64.yml
 
 Push to Dockerhub:
 

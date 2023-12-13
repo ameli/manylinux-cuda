@@ -1,0 +1,5 @@
+version: '3'
+services:
+    manylinux2014_aarch64_cuda_12.3:
+        build: ./docker/manylinux2014_aarch64_cuda_12.3
+        image: sameli/manylinux2014_aarch64_cuda_12.3

@@ -7,8 +7,6 @@
 # directory of this source tree.
 
 
-set -xe
-
 # ==============
 # install docker
 # ==============

@@ -190,10 +190,26 @@ Push to Dockerhub:
     docker login
     docker-compose push
 
+Troubleshooting
+===============
+
+When running the docker container in Github action, you may encounter this error:
+
+::
+
+    no space left on device.
+
+To resolve this, try clearing the Github's runner cache before executing the docker container:
+
+::
+
+    - name: Clear Cache
+      run: rm -rf /opt/hostedtoolcache
+
 Other CUDA Versions
 ===================
 
-To request a docker image for a specific CUDA version, feel free to create a `GitHub issue <https://github.com/ameli/manylinux-cuda/issues>`_.
+To request a docker image for a specific CUDA version, feel free to create a `GitHub issue <https://github.com/ameli/manylinux-cuda/issues>`__.
 
 License
 =======

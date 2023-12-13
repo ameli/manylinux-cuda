@@ -1,4 +1,4 @@
-name: deploy-docker-12-0
+name: deploy-docker-manylinux2014_x86_64_cuda_12.2
 
 on:
     push:
@@ -9,7 +9,7 @@ on:
             - published
 
 jobs:
-    build-cuda-12-0:
+    build-manylinux_x86_64_cuda_12_2:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -21,18 +21,18 @@ jobs:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-            - name: Build and push Cuda-12.0
+            - name: Build and push manylinux2014_x86_64_cuda-12.2
               id: docker_build
               uses: docker/build-push-action@v3
               with:
                   push: true
-                  file: ./docker/cuda-12.0/Dockerfile
-                  tags: sameli/manylinux2014_x86_64_cuda_12.0:latest
+                  file: ./docker/manylinux2014_x86_64_cuda_12.2/Dockerfile
+                  tags: sameli/manylinux2014_x86_64_cuda_12.2:latest
 
             - name: Image digest
               run: echo ${{ steps.docker_build.outputs.digest }}
 
-    # test-cuda-12-0:
+    # test-cuda-12-2:
     #     runs-on: ubuntu-latest
     #     steps:
     #         - name: Install Snap
@@ -48,7 +48,7 @@ jobs:
     #             newgrp docker
     #
     #         - name: Pull Docker Image
-    #           run: docker pull sameli/manylinux2014_x86_64_cuda_12.0
+    #           run: docker pull sameli/manylinux2014_x86_64_cuda_12.2
     #
     #         - name: Run Docker Image
-    #           run: docker run -t sameli/manylinux2014_x86_64_cuda_12.0 nvcc --version
+    #           run: docker run -t sameli/manylinux2014_x86_64_cuda_12.2 nvcc --version

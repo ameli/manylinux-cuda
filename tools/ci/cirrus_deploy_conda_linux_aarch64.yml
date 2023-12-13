@@ -1,0 +1,129 @@
+# SPDX-FileCopyrightText: Copyright 2021, Siavash Ameli <sameli@berkeley.edu>
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileType: SOURCE
+#
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the license found in the LICENSE.txt file in the root
+# directory of this source tree.
+
+
+# ========================
+# conda linux aarch64 cibw
+# ========================
+
+conda_linux_aarch64_cibw: &CONDA_LINUX_AARCH64_CIBW
+  install_cibuildwheel_script:
+    - python -m pip install cibuildwheel
+  cibuildwheel_script:
+    - cibuildwheel
+  conda_linux_aarch64_wheels_artifacts:
+    path: "wheelhouse/*.whl"
+
+
+# ================================
+# conda build wheels linux aarch64
+# ================================
+
+conda_build_wheels_linux_aarch64_task:
+  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
+  compute_engine_instance:
+    image_project: cirrus-images
+    image: family/docker-builder-arm64
+    architecture: arm64
+    platform: linux
+    cpu: 1
+    memory: 4G
+  matrix:
+    - env:
+        CIBW_BUILD: "cp39-manylinux_aarch64"
+        # EXPECT_CPU_FEATURES: NEON NEON_FP16 NEON_VFPV4 ASIMD ASIMDHP ASIMDDP ASIMDFHM
+    - env:
+        CIBW_BUILD: "cp310-manylinux_aarch64"
+    - env:
+        CIBW_BUILD: "cp311-manylinux_aarch64"
+    - env:
+        CIBW_BUILD: "cp312-manylinux_aarch64"
+  env:
+    CIBW_ARCHS: "aarch64"
+    # CIBW_BUILD: "*-manylinux_aarch64"
+    CIBW_SKIP: "pp* cp36-* cp37-* cp38-*"
+    CIBW_BUILD_VERBOSITY: "3"
+    MANYLINUX_AARCH64_IMAGE: "manylinux2014"
+    CIBW_ENVIRONMENT: >
+      USE_LONG_INT=0
+      USE_UNSIGNED_LONG_INT=0
+      USE_CBLAS=0
+
+  build_script: |
+    apt update
+    apt install -y python3-venv python-is-python3
+    git fetch origin
+    which python
+    echo $CIRRUS_CHANGE_MESSAGE
+
+  <<: *CONDA_LINUX_AARCH64_CIBW
+
+
+# ======================================
+# conda build upload conda linux aarch64
+# ======================================
+
+conda_build_upload_conda_linux_aarch64_task:
+  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
+  compute_engine_instance:
+    image_project: cirrus-images
+    image: family/docker-builder-arm64
+    architecture: arm64
+    platform: linux
+    cpu: 1
+    memory: 4G
+  depends_on:
+    - conda_build_wheels_linux_aarch64
+  env:
+    # see setup.py. Avoids a bug when building with multiple python variants
+    CYTHON_BUILD_IN_SOURCE: '1'
+    ANACONDA_API_TOKEN: ENCRYPTED[!f177322643cd551d0cf3749cb4f6549ce7f7be107a0394385e5b5c8b7edd62aa4ac478cc0fa53564890549449dc2dce8!]
+
+  build_script: |
+    # The name of the zip file is derived from the `wheels_artifact` line.
+    # If you change the artifact line to `myfile_artifact` then it would be
+    # called myfile.zip
+    curl https://api.cirrus-ci.com/v1/artifact/build/$CIRRUS_BUILD_ID/conda_linux_aarch64_wheels.zip --output wheels.zip
+    mkdir -p dist
+    unzip -j wheels.zip -d dist
+
+    source ./tools/wheels/upload_wheels.sh
+    install_anaconda "linux_aarch64"
+    build_upload_anaconda "linux_aarch64"
+
+
+# ========================
+# conda test linux aarch64
+# ========================
+
+conda_test_linux_aarch64_task:
+  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
+  compute_engine_instance:
+    image_project: cirrus-images
+    image: family/docker-builder-arm64
+    architecture: arm64
+    platform: linux
+    cpu: 1
+    memory: 4G
+  depends_on:
+    - conda_build_upload_conda_linux_aarch64
+
+  test_script: |
+    source ./tools/wheels/upload_wheels.sh
+    install_anaconda "linux_aarch64"
+    set -x
+    CONDA_BIN_DIR=$(dirname `which conda`)
+    PYTHON=${CONDA_BIN_DIR}/python
+    uname -m
+    ${PYTHON} -c "import platform;print(platform.python_version());print(platform.system());print(platform.machine())"
+    mv detkit detkit_do_dot_import
+    conda install -c s-ameli detkit -y
+    ${PYTHON} -m pip install --upgrade pip
+    ${PYTHON} -m pip install numpy
+    ${PYTHON} -m pip install -r tests/requirements.txt
+    ${PYTHON} -m pytest

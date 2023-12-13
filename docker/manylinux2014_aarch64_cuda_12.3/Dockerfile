@@ -24,14 +24,20 @@ LABEL Description="manylinux2014_aarch64 with cuda 12.3"
 # Install cuda
 # ------------
 
-RUN dnf install -y dnf-utils
-RUN dnf install -y wget
+RUN yum install -y yum-utils
+RUN yum install -y wget
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/12.3.1/local_installers/cuda-repo-rhel9-12-3-local-12.3.1_545.23.08-1.aarch64.rpm
-RUN sudo rpm -i cuda-repo-rhel9-12-3-local-12.3.1_545.23.08-1.aarch64.rpm
-RUN sudo dnf clean all
-RUN sudo dnf -y install cuda-toolkit-12-3
-RUN rm cuda-repo-rhel9-12-3-local-12.3.1_545.23.08-1.aarch64.rpm
+# RUN wget https://developer.download.nvidia.com/compute/cuda/12.3.1/local_installers/cuda-repo-rhel9-12-3-local-12.3.1_545.23.08-1.aarch64.rpm
+# RUN sudo rpm -i cuda-repo-rhel9-12-3-local-12.3.1_545.23.08-1.aarch64.rpm
+# RUN sudo yum clean all
+# RUN sudo yum -y install cuda-toolkit-12-3
+# RUN rm cuda-repo-rhel9-12-3-local-12.3.1_545.23.08-1.aarch64.rpm
+
+RUN wget https://developer.download.nvidia.com/compute/cuda/12.3.1/local_installers/cuda-repo-rhel8-12-3-local-12.3.1_545.23.08-1.aarch64.rpm
+RUN sudo rpm -i cuda-repo-rhel8-12-3-local-12.3.1_545.23.08-1.aarch64.rpm
+RUN sudo yum clean all
+RUN sudo yum -y install cuda-toolkit-12-3
+RUN rm cuda-repo-rhel8-12-3-local-12.3.1_545.23.08-1.aarch64.rpm
 
 # -------------------------
 # Set environment variables

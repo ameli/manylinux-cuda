@@ -41,7 +41,6 @@ install_docker() {
 
     # Configure to use docker without sudo
     getent group docker || sudo groupadd docker
-    sudo usermod -aG docker $USER
 
     # Check docker works without sudo
     docker run hello-world

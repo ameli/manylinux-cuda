@@ -24,8 +24,8 @@ LABEL Description="manylinux2014_aarch64 with cuda 12.3"
 # Install cuda
 # ------------
 
-VER="12-3"
-ARCH="aarch64"
+ARG VER="12-3"
+ARG ARCH="aarch64"
 
 RUN yum install -y yum-utils
 RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel9/sbsa/cuda-rhel9.repo

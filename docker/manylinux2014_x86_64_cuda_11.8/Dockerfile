@@ -24,8 +24,8 @@ LABEL Description="manylinux2014_x86_64 with cuda 11.8"
 # Install cuda
 # ------------
 
-VER="11-8"
-ARCH="x86_64"
+ARG VER="11-8"
+ARG ARCH="x86_64"
 
 RUN yum install -y yum-utils
 RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo

@@ -9,7 +9,7 @@ on:
             - published
 
 jobs:
-    build-manylinux_x86_64_cuda_12.3:
+    build-manylinux_x86_64_cuda_12_3:
         runs-on: ubuntu-latest
         steps:
             - name: Checkout

@@ -24,15 +24,20 @@ LABEL Description="manylinux2014_x86_64 with cuda 10.2"
 # Install cuda
 # ------------
 
-RUN yum install -y yum-utils
-RUN yum install -y wget
+# RUN yum install -y yum-utils
+# RUN yum install -y wget
+#
+# RUN wget https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-rhel7-10-2-local-10.2.89-440.33.01-1.0-1.x86_64.rpm
+# RUN rpm -i cuda-repo-rhel7-10-2-local-10.2.89-440.33.01-1.0-1.x86_64.rpm
+# RUN yum clean all
+# RUN yum -y install nvidia-driver-latest-dkms cuda
+# RUN yum -y install cuda-drivers
+# RUN rm cuda-repo-rhel7-10-2-local-10.2.89-440.33.01-1.0-1.x86_64.rpm
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/10.2/Prod/local_installers/cuda-repo-rhel7-10-2-local-10.2.89-440.33.01-1.0-1.x86_64.rpm
-RUN rpm -i cuda-repo-rhel7-10-2-local-10.2.89-440.33.01-1.0-1.x86_64.rpm
+RUN yum install -y yum-utils
+RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
 RUN yum clean all
-RUN yum -y install nvidia-driver-latest-dkms cuda
-RUN yum -y install cuda-drivers
-RUN rm cuda-repo-rhel7-10-2-local-10.2.89-440.33.01-1.0-1.x86_64.rpm
+RUN yum -y install cuda-toolkit-10-2.x86_64
 
 # -------------------------
 # Set environment variables

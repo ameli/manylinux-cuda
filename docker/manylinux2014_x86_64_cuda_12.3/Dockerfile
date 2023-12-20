@@ -4,11 +4,11 @@
 
 # -----------------------------------------------------------------------------
 # How to build
-#   $ docker build -t sameli/manylinux2014_x86_64_cuda_11.7 -f <This-Filename> .
+#   $ docker build -t sameli/manylinux2014_x86_64_cuda_12.3 -f <This-Filename> .
 #
 # How to run:
 #   $ docker run -it -v/host_dir:/image_dir --entrypoint /bin/bash \
-#         manylinux2014_x86_64_cuda_11.7
+#         manylinux2014_x86_64_cuda_12.3
 # -----------------------------------------------------------------------------
 
 # -----------------
@@ -18,21 +18,27 @@
 FROM quay.io/pypa/manylinux2014_x86_64
 
 MAINTAINER Siavash Ameli <samei@berkeley.edu>
-LABEL Description="manylinux2014_x86_64 with cuda 11.7"
+LABEL Description="manylinux2014_x86_64 with cuda 12.3"
 
 # ------------
 # Install cuda
 # ------------
 
-RUN yum install -y yum-utils
-RUN yum install -y wget
+# RUN yum install -y yum-utils
+# RUN yum install -y wget
+#
+# RUN wget https://developer.download.nvidia.com/compute/cuda/12.3.0/local_installers/cuda-repo-rhel7-12.3-local-12.3.0_535.54.03-1.x86_64.rpm
+# RUN rpm -i cuda-repo-rhel7-12.3-local-12.3.0_535.54.03-1.x86_64.rpm
+# RUN yum clean all
+# RUN yum -y install nvidia-driver-latest-dkms cuda
+# RUN yum -y install cuda-drivers
+# RUN rm -f cuda-repo-rhel7-12.3-local-12.3.0_535.54.03-1.x86_64.rpm
+# RUN rm -rf /var/cuda-repo-rhel7-12.3-local
 
-RUN wget https://developer.download.nvidia.com/compute/cuda/11.7.0/local_installers/cuda-repo-rhel7-11-7-local-11.7.0_515.43.04-1.x86_64.rpm
-RUN rpm -i cuda-repo-rhel7-11-7-local-11.7.0_515.43.04-1.x86_64.rpm
+RUN yum install -y yum-utils
+RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
 RUN yum clean all
-RUN yum -y install nvidia-driver-latest-dkms cuda
-RUN yum -y install cuda-drivers
-RUN rm cuda-repo-rhel7-11-7-local-11.7.0_515.43.04-1.x86_64.rpm
+RUN yum -y install cuda-toolkit-12.3.x86_64
 
 # -------------------------
 # Set environment variables

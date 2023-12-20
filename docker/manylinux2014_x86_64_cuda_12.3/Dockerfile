@@ -38,7 +38,7 @@ LABEL Description="manylinux2014_x86_64 with cuda 12.3"
 RUN yum install -y yum-utils
 RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
 RUN yum clean all
-RUN yum -y install cuda-toolkit-12.3.x86_64
+RUN yum -y install cuda-toolkit-12-3.x86_64
 
 # -------------------------
 # Set environment variables

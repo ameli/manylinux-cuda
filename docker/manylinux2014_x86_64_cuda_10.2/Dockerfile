@@ -32,7 +32,7 @@ RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/
 RUN yum clean all
 RUN yum -y install cuda-compiler-${VER}.${ARCH} \
                    cuda-libraries-${VER}.${ARCH} \
-                   cuda-libraries-devel-${VER}.${ARCH}
+                   cuda-libraries-dev-${VER}.${ARCH}
 
 # -------------------------
 # Set environment variables

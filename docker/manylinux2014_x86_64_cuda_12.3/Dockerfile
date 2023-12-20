@@ -24,21 +24,15 @@ LABEL Description="manylinux2014_x86_64 with cuda 12.3"
 # Install cuda
 # ------------
 
-# RUN yum install -y yum-utils
-# RUN yum install -y wget
-#
-# RUN wget https://developer.download.nvidia.com/compute/cuda/12.3.0/local_installers/cuda-repo-rhel7-12.3-local-12.3.0_535.54.03-1.x86_64.rpm
-# RUN rpm -i cuda-repo-rhel7-12.3-local-12.3.0_535.54.03-1.x86_64.rpm
-# RUN yum clean all
-# RUN yum -y install nvidia-driver-latest-dkms cuda
-# RUN yum -y install cuda-drivers
-# RUN rm -f cuda-repo-rhel7-12.3-local-12.3.0_535.54.03-1.x86_64.rpm
-# RUN rm -rf /var/cuda-repo-rhel7-12.3-local
+VER="12-3"
+ARCH="x86_64"
 
 RUN yum install -y yum-utils
 RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
 RUN yum clean all
-RUN yum -y install cuda-toolkit-12-3.x86_64
+RUN yum -y install cuda-compiler-${VER}.${ARCH} \
+                   cuda-libraries-${VER}.${ARCH} \
+                   cuda-libraries-devel-${VER}.${ARCH}
 
 # -------------------------
 # Set environment variables

@@ -6,17 +6,6 @@ Dockerfiles containing an installation of **NVIDIA CUDA toolkit**, built on top 
 * For X86_64 architecture: `quay.io/pypa/manylinux2014_x86_64 <https://github.com/pypa/manylinux>`__
 * For AARCH64 architecture: `quay.io/pypa/manylinux2014_aarch64 <https://github.com/pypa/manylinux>`__
 
-Packages
-========
-
-The Docker images are designed specifically for building Python wheels. To maintain a minimal Docker image size, only the essential compilers and libraries from CUDA Toolkit are included. These include:
-
-* CUDA compiler: ``cuda-crt``, ``cuda-cuobjdump``, ``cuda-cuxxfilt``, ``cuda-nvcc``, ``cuda-nvprune``, ``cuda-nvvm``, ``cuda-cudart``, ``cuda-nvrtc``, ``cuda-opencl``,
-* CUDA libraries: ``libcublas``, ``libcufft``, ``libcufile``, ``libcurand``, ``libcusolver``, ``libcusparse``, ``libnpp``, ``libnvjitlink``, ``libnvjpeg``
-* CUDA development libraries: ``cuda-cccl``, ``cuda-cudart-devel``, ``cuda-driver-devel``, ``cuda-nvrtc-devel``, ``cuda-opencl-devel``, ``cuda-profiler-api``, ``libcublas-devel``, ``libcufft-devel``, ``libcufile-devel``, ``libcurand-devel``, ``libcusolver-devel``, ``libcusparse-devel``, ``libnpp-devel``, ``libnvjitlink-devel``, ``libnvjpeg-devel``
-
-If you need additional packages from CUDA toolkit to be included in the images, please feel free to create a `GitHub issue <https://github.com/ameli/manylinux-cuda/issues>`__.
-
 Download Images
 ===============
 
@@ -98,6 +87,17 @@ AARCH64 Architecture
   ::
 
       docker run -it sameli/manylinux2014_aarch64_cuda_12.3
+
+Packages
+========
+
+The Docker images are designed specifically for building Python wheels. To maintain a minimal Docker image size, only the essential compilers and libraries from CUDA Toolkit are included. These include:
+
+* CUDA compiler: ``cuda-crt``, ``cuda-cuobjdump``, ``cuda-cuxxfilt``, ``cuda-nvcc``, ``cuda-nvprune``, ``cuda-nvvm``, ``cuda-cudart``, ``cuda-nvrtc``, ``cuda-opencl``,
+* CUDA libraries: ``libcublas``, ``libcufft``, ``libcufile``, ``libcurand``, ``libcusolver``, ``libcusparse``, ``libnpp``, ``libnvjitlink``, ``libnvjpeg``
+* CUDA development libraries: ``cuda-cccl``, ``cuda-cudart-devel``, ``cuda-driver-devel``, ``cuda-nvrtc-devel``, ``cuda-opencl-devel``, ``cuda-profiler-api``, ``libcublas-devel``, ``libcufft-devel``, ``libcufile-devel``, ``libcurand-devel``, ``libcusolver-devel``, ``libcusparse-devel``, ``libnpp-devel``, ``libnvjitlink-devel``, ``libnvjpeg-devel``
+
+If you need additional packages from CUDA toolkit to be included in the images, please feel free to create a `GitHub issue <https://github.com/ameli/manylinux-cuda/issues>`__.
 
 Environment Variables
 =====================

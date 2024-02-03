@@ -35,18 +35,18 @@ RUN yum -y install cuda-compiler-${VER}.${ARCH} \
                    nvidia-driver-latest-dkms
 RUN yum clean all
 RUN rm -rf /var/cache/yum/*
-RUN echo "/usr/local/cuda/lib64" >> /etc/ld.so.conf.d/999_nvidia_cuda.conf
+RUN echo "/usr/local/cuda-10.2/lib64" >> /etc/ld.so.conf.d/999_nvidia_cuda.conf
 
 # -------------------------
 # Set environment variables
 # -------------------------
 
-ENV PATH="/usr/local/cuda/bin:${PATH}"
-ENV LD_LIBRARY_PATH="/usr/local/cuda/lib64:${LD_LIBRARY_PATH}"
-ENV CUDA_HOME=/usr/local/cuda
-ENV CUDA_ROOT=/usr/local/cuda
-ENV CUDA_PATH=/usr/local/cuda
-ENV CUDADIR=/usr/local/cuda
+ENV PATH="/usr/local/cuda-10.2/bin:${PATH}"
+ENV LD_LIBRARY_PATH="/usr/local/cuda-10.2/lib64:${LD_LIBRARY_PATH}"
+ENV CUDA_HOME=/usr/local/cuda-10.2
+ENV CUDA_ROOT=/usr/local/cuda-10.2
+ENV CUDA_PATH=/usr/local/cuda-10.2
+ENV CUDADIR=/usr/local/cuda-10.2
 
 # ------------------
 # Set Compatible GCC

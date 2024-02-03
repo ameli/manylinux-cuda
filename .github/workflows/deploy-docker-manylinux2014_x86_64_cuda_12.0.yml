@@ -1,15 +1,16 @@
 name: deploy-docker-manylinux2014_x86_64_cuda_12.0
 
 on:
-    # push:
-    #     branches:
-    #         - main
+    push:
+        branches:
+            - main
     release:
         types: 
             - published
 
 jobs:
-    build-manylinux_x86_64_cuda_12_0:
+  build_docker:
+        name: manylinux2014_x86_64_cuda_12.0
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -32,23 +33,25 @@ jobs:
             - name: Image digest
               run: echo ${{ steps.docker_build.outputs.digest }}
 
-    # test-cuda-12-0:
-    #     runs-on: ubuntu-latest
-    #     steps:
-    #         - name: Install Snap
-    #           run: |
-    #             sudo apt update
-    #             sudo apt install snapd
-    #
-    #         - name: Install Docker
-    #           run: |
-    #             sudo snap install docker
-    #             sudo groupadd -f docker
-    #             sudo usermod -aG docker $USER
-    #             newgrp docker
-    #
-    #         - name: Pull Docker Image
-    #           run: docker pull sameli/manylinux2014_x86_64_cuda_12.0
-    #
-    #         - name: Run Docker Image
-    #           run: docker run -t sameli/manylinux2014_x86_64_cuda_12.0 nvcc --version
+  test_docker:
+        needs: [build_docker]
+        name: manylinux2014_x86_64_cuda_12.0
+        runs-on: ubuntu-latest
+        steps:
+            - name: Install Snap
+              run: |
+                sudo apt update
+                sudo apt install snapd
+
+            - name: Install Docker
+              run: |
+                sudo snap install docker
+                sudo groupadd -f docker
+                sudo usermod -aG docker $USER
+                newgrp docker
+
+            - name: Pull Docker Image
+              run: docker pull sameli/manylinux2014_x86_64_cuda_12.0
+
+            - name: Run Docker Image
+              run: docker run -t sameli/manylinux2014_x86_64_cuda_12.0 nvcc --version

@@ -1,0 +1,81 @@
+# SPDX-FileCopyrightText: Copyright 2021, Siavash Ameli <sameli@berkeley.edu>
+# SPDX-License-Identifier: BSD-3-Clause
+# SPDX-FileType: SOURCE
+#
+# This program is free software: you can redistribute it and/or modify it
+# under the terms of the license found in the LICENSE.txt file in the root
+# directory of this source tree.
+
+
+# =====================================
+# manylinux 2_28 aarch64 cuda 12.3 cibw
+# =====================================
+
+manylinux_2_28_aarch64_cuda_12_3_cibw: &MANYLINUX_2_28_AARCH64_CUDA_12_3_CIBW
+  install_cibuildwheel_script:
+    - python -m pip install cibuildwheel
+  cibuildwheel_script:
+    - cibuildwheel
+  conda_linux_aarch64_wheels_artifacts:
+    path: "wheelhouse/*.whl"
+
+
+# =============================================
+# build docker manylinux 2_28 aarch64 cuda 12-3
+# =============================================
+
+build_docker_manylinux_2_28_aarch64_cuda_12_3_task:
+  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
+  compute_engine_instance:
+    image_project: cirrus-images
+    image: family/docker-builder-arm64
+    architecture: arm64
+    platform: linux
+    cpu: 1
+    memory: 8G
+  env:
+    DOCKERHUB_TOKEN: ENCRYPTED[!05c76b305df7bb81c59faa33981e2cf4d08c4aa6f1c0313645815c5729f42b6d9db7f2829260ca8cb1e92637151670ad!]
+
+  build_script: |
+
+    # Install docker
+    source ./tools/scripts/docker_utils.sh
+    install_docker
+
+    # Build source
+    docker build -t sameli/manylinux_2_28_aarch64_cuda_12.3 -f ./docker/manylinux_2_28_aarch64_cuda_12.3/Dockerfile .
+
+    docker images
+
+    # Upload image to dockerhub
+    DOCKERHUB_USERNAME="sameli"
+    docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_TOKEN}
+
+    # Upload to dockerhub
+    docker push sameli/manylinux_2_28_aarch64_cuda_12.3
+
+
+# ============================================
+# test docker manylinux 2_28 aarch64 cuda 12-3
+# ============================================
+
+test_docker_manylinux_2_28_aarch64_cuda_12_3_task:
+  use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
+  compute_engine_instance:
+    image_project: cirrus-images
+    image: family/docker-builder-arm64
+    architecture: arm64
+    platform: linux
+    cpu: 1
+    memory: 8G
+  depends_on:
+    - build_docker_manylinux_2_28_aarch64_cuda_12_3
+
+  test_script: |
+
+    # Install docker
+    source ./tools/scripts/docker_utils.sh
+    install_docker
+
+    # Test dockerhub image
+    docker run -t sameli/manylinux_2_28_aarch64_cuda_12.3 nvcc --version

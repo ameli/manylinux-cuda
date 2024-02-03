@@ -1,4 +1,4 @@
-name: deploy-docker-manylinux2014_x86_64_cuda_10.2
+name: deploy-docker-manylinux_2_28_x86_64_cuda_12.3
 
 on:
     push:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build_docker:
-        name: manylinux2014_x86_64_cuda_10.2
+        name: manylinux_2_28_x86_64_cuda_12.3
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
@@ -22,20 +22,20 @@ jobs:
                   username: ${{ secrets.DOCKERHUB_USERNAME }}
                   password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-            - name: Build and push manylinux2014_x86_64_cuda-10.2
+            - name: Build and push manylinux_2_28_x86_64_cuda-12.3
               id: docker_build
               uses: docker/build-push-action@v3
               with:
                   push: true
-                  file: ./docker/manylinux2014_x86_64_cuda_10.2/Dockerfile
-                  tags: sameli/manylinux2014_x86_64_cuda_10.2:latest
+                  file: ./docker/manylinux_2_28_x86_64_cuda_12.3/Dockerfile
+                  tags: sameli/manylinux_2_28_x86_64_cuda_12.3:latest
 
             - name: Image digest
               run: echo ${{ steps.docker_build.outputs.digest }}
 
   test_docker:
         needs: [build_docker]
-        name: manylinux2014_x86_64_cuda_10.2
+        name: manylinux_2_28_x86_64_cuda_12.3
         runs-on: ubuntu-latest
         steps:
             - name: Install Snap
@@ -51,7 +51,7 @@ jobs:
                 newgrp docker
 
             - name: Pull Docker Image
-              run: docker pull sameli/manylinux2014_x86_64_cuda_10.2
+              run: docker pull sameli/manylinux_2_28_x86_64_cuda_12.3
 
             - name: Run Docker Image
-              run: docker run -t sameli/manylinux2014_x86_64_cuda_10.2 nvcc --version
+              run: docker run -t sameli/manylinux_2_28_x86_64_cuda_12.3 nvcc --version

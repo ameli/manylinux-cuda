@@ -1,12 +1,7 @@
 manylinux-cuda
 **************
 
-Dockerfiles containing an installation of **NVIDIA CUDA toolkit**, built on top of the following base images:
-
-* For **manylinux_2_28** on **X86_64** architecture: `quay.io/pypa/manylinux_2_28_x86_64 <https://github.com/pypa/manylinux>`__
-* For **manylinux_2_28** on **AARCH64** architecture: `quay.io/pypa/manylinux_2_28_aarch64 <https://github.com/pypa/manylinux>`__
-* For **manylinux2014** on **X86_64** architecture: `quay.io/pypa/manylinux2014_x86_64 <https://github.com/pypa/manylinux>`__
-* For **manylinux2014** on **AARCH64** architecture: `quay.io/pypa/manylinux2014_aarch64 <https://github.com/pypa/manylinux>`__
+`manylinux <https://github.com/pypa/manylinux>`__ docker images featuring an installation of the **NVIDIA CUDA** compiler, runtime and development libraries, and the NVIDIA graphic driver, designed specifically for building Python wheels with a C++/CUDA backend.
 
 Download Images
 ===============
@@ -62,10 +57,20 @@ AARCH64 Architecture
 
       docker pull sameli/manylinux2014_x86_64_cuda_12.3
 
-Packages
-========
+Base of Images
+==============
 
-The Docker images are designed specifically for building Python wheels. To maintain a minimal Docker image size, only the essential compilers and libraries from CUDA Toolkit are included. These include:
+The docker images were built based on the following images:
+
+* **manylinux_2_28** on **X86_64** architecture is based on: `quay.io/pypa/manylinux_2_28_x86_64 <https://github.com/pypa/manylinux>`__
+* **manylinux_2_28** on **AARCH64** architecture is based on: `quay.io/pypa/manylinux_2_28_aarch64 <https://github.com/pypa/manylinux>`__
+* **manylinux2014** on **X86_64** architecture is based on: `quay.io/pypa/manylinux2014_x86_64 <https://github.com/pypa/manylinux>`__
+* **manylinux2014** on **AARCH64** architecture is based on: `quay.io/pypa/manylinux2014_aarch64 <https://github.com/pypa/manylinux>`__
+
+What is Included
+================
+
+To maintain a minimal Docker image size, only the essential compilers and libraries from CUDA Toolkit are included. These include:
 
 * CUDA compiler: ``cuda-crt``, ``cuda-cuobjdump``, ``cuda-cuxxfilt``, ``cuda-nvcc``, ``cuda-nvprune``, ``cuda-nvvm``, ``cuda-cudart``, ``cuda-nvrtc``, ``cuda-opencl``,
 * CUDA libraries: ``libcublas``, ``libcufft``, ``libcufile``, ``libcurand``, ``libcusolver``, ``libcusparse``, ``libnpp``, ``libnvjitlink``, ``libnvjpeg``
@@ -93,63 +98,34 @@ The following environment variables are defined:
 Run Containers
 ==============
 
-Run a container for any of the above images in interactive mode by:
+Run containers in interactive mode by:
 
-  ::
+::
 
-      docker run -it sameli/manylinux_2_28_x86_64_cuda_12.3
+    docker run -it sameli/manylinux_2_28_x86_64_cuda_12.3
 
 Check CUDA Version
 ==================
 
-The ``nvcc`` executable is available on the ``PATH``. To check the CUDA version, run:
+The ``nvcc`` executable is available on the ``PATH``. To check the CUDA version, execute:
 
-  ::
+::
 
-      docker run -t sameli/manylinux_2_28_x86_64_cuda_12.3 nvcc --version
+    docker run -t sameli/manylinux_2_28_x86_64_cuda_12.3 nvcc --version
     
 The output of the above command is:
 
-  ::
-
-      Copyright (c) 2005-2022 NVIDIA Corporation
-      Built on Mon_Oct_24_19:12:58_PDT_2022
-      Cuda compilation tools, release 12.0, V12.0.76
-      Build cuda_12.3.r12.0/compiler.31968024_0
-
-How to Build Images
-===================
-
-Get this repository:
-
 ::
 
-    git clone git@github.com:ameli/manylinux-cuda.git
-    cd manylinux-cuda
-
-Build docker with ``docker-compose``:
-
-::
-
-    sudo apt install docker-compose
-
-    # Build images for x86_64 arch
-    docker-compose build -f docker-compose-x86_64.yml
-
-    # Build images for aarch64 arch
-    docker-compose build -f docker-compose-aarch64.yml
-
-Push to Dockerhub:
-
-::
-
-    docker login
-    docker-compose push
+    Copyright (c) 2005-2022 NVIDIA Corporation
+    Built on Mon_Oct_24_19:12:58_PDT_2022
+    Cuda compilation tools, release 12.0, V12.0.76
+    Build cuda_12.3.r12.0/compiler.31968024_0
 
 Troubleshooting
 ===============
 
-When running the docker container in Github action, you may encounter this error:
+When running the docker containers in Github action, you may encounter this error:
 
 ::
 

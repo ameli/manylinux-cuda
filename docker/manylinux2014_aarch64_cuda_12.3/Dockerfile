@@ -29,11 +29,9 @@ ARG ARCH="aarch64"
 
 RUN yum install -y yum-utils
 RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel9/sbsa/cuda-rhel9.repo
-RUN yum -y install epel-release
 RUN yum -y install cuda-compiler-${VER}.${ARCH} \
                    cuda-libraries-${VER}.${ARCH} \
                    cuda-libraries-devel-${VER}.${ARCH}
-RUN yum -y module install nvidia-driver:latest-dkms
 RUN yum clean all
 RUN rm -rf /var/cache/yum/*
 RUN echo "/usr/local/cuda/lib64" >> /etc/ld.so.conf.d/999_nvidia_cuda.conf

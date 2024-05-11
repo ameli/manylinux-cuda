@@ -31,8 +31,7 @@ RUN yum install -y yum-utils
 RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel7/x86_64/cuda-rhel7.repo
 RUN yum -y install cuda-compiler-${VER}.${ARCH} \
                    cuda-libraries-${VER}.${ARCH} \
-                   cuda-libraries-dev-${VER}.${ARCH} \
-                   nvidia-driver-latest-dkms
+                   cuda-libraries-dev-${VER}.${ARCH}
 RUN yum clean all
 RUN rm -rf /var/cache/yum/*
 RUN echo "/usr/local/cuda-10.2/lib64" >> /etc/ld.so.conf.d/999_nvidia_cuda.conf

@@ -6,7 +6,7 @@ manylinux-cuda
 Download Images
 ===============
 
-Obtain the docker images from Dockerhub for the following CUDA versions:
+Obtain the docker images from Docker Hub for the following CUDA versions:
 
 X86_64 Architecture
 -------------------
@@ -75,13 +75,30 @@ To maintain a minimal Docker image size, only the essential compilers and librar
 * CUDA compiler: ``cuda-crt``, ``cuda-cuobjdump``, ``cuda-cuxxfilt``, ``cuda-nvcc``, ``cuda-nvprune``, ``cuda-nvvm``, ``cuda-cudart``, ``cuda-nvrtc``, ``cuda-opencl``,
 * CUDA libraries: ``libcublas``, ``libcufft``, ``libcufile``, ``libcurand``, ``libcusolver``, ``libcusparse``, ``libnpp``, ``libnvjitlink``, ``libnvjpeg``
 * CUDA development libraries: ``cuda-cccl``, ``cuda-cudart-devel``, ``cuda-driver-devel``, ``cuda-nvrtc-devel``, ``cuda-opencl-devel``, ``cuda-profiler-api``, ``libcublas-devel``, ``libcufft-devel``, ``libcufile-devel``, ``libcurand-devel``, ``libcusolver-devel``, ``libcusparse-devel``, ``libnpp-devel``, ``libnvjitlink-devel``, ``libnvjpeg-devel``
-* NVIDIA driver: ``nvidia-driver:latest-dkms`` (*see note below* :sup:`1`)
 
 If you need additional packages from CUDA toolkit to be included in the images, please feel free to create a `GitHub issue <https://github.com/ameli/manylinux-cuda/issues>`__.
 
-.. line-block::
+NVIDIA Driver
+=============
 
-    :sup:`1. NVIDIA driver is not available on manylinux2014 on AARCH64 arch. To use NVIDIA driver on AARCH64 arch, use manylinux_2_xx.`
+The Docker images do not include the NVIDIA driver to prevent incompatibility issues with the host system's native driver when used at runtime.
+
+For users who might need specific components of the NVIDIA driver, such as ``libcuda.so``, to compile their code, the driver can be installed within the container using the following commands based on your image's base distribution:
+
+* For ``manylinux2`` images:
+
+  ::
+
+      dnf -y install epel-release
+      dnf -y module install nvidia-driver:latest-dkms
+
+* For ``manylinux2014`` images:
+
+  ::
+
+      yum install nvidia-driver-latest-dkms
+
+Note, however, that this step should generally be avoided unless strictly required, as it may lead to compatibility issues between the driver versions in the container and on the host system. If possible, it is recommended to rely on the host system's driver installation when running containers that require GPU access.
 
 Environment Variables
 =====================
@@ -122,16 +139,56 @@ The output of the above command is:
     Cuda compilation tools, release 12.0, V12.0.76
     Build cuda_12.3.r12.0/compiler.31968024_0
 
+Using Host's GPU
+================
+
+The primary purpose of these Docker images is to build code, such as Python wheels, using the *manylinux* standard. While this process does not require access to the host's GPU, you might want to use them at runtime on the host's GPU, particularly for testing purposes.
+
+To access host's GPU device from the container, install *Nvidia Container Toolkit* as follows.
+
+1. Add the package to the repository:
+
+   ::
+
+       distribution=$(. /etc/os-release;echo $ID$VERSION_ID)
+       curl -s -L https://nvidia.github.io/nvidia-docker/gpgkey | sudo apt-key add -
+       curl -s -L https://nvidia.github.io/nvidia-docker/$distribution/nvidia-docker.list | sudo tee /etc/apt/sources.list.d/nvidia-docker.list
+
+2. Install `nvidia-contaner-toolkit` by:
+
+   ::
+      
+       sudo apt-get update && sudo apt-get install -y nvidia-container-toolkit
+
+3. Restart docker to be able to use it:
+
+   ::
+
+       sudo systemctl restart docker
+
+To use host's GPU, add  ``--gpus all`` to any of the docker commands given before, such as:
+
+::
+
+    docker run --gpus all -it sameli/manylinux_2_28_x86_64_cuda_12.3
+
+To check the host's NVIDIA driver version, CUDA runtime library version, and list of available GPU devices, run ``nvida-smi`` command, such as by:
+
+::
+
+    docker run --gpus all sameli/manylinux_2_28_x86_64_cuda_12.3 nvidia-smi
+
+
 Troubleshooting
 ===============
 
-When running the docker containers in Github action, you may encounter this error:
+When running the docker containers in GitHub action, you may encounter this error:
 
 ::
 
     no space left on device.
 
-To resolve this, try clearing the Github's runner cache before executing the docker container:
+To resolve this, try clearing the GitHub's runner cache before executing the docker container:
 
 ::
 

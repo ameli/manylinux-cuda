@@ -28,11 +28,9 @@ ARG VER="12-3"
 ARG ARCH="aarch64"
 
 RUN dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel8/sbsa/cuda-rhel8.repo
-RUN dnf -y install epel-release
 RUN dnf -y install cuda-compiler-${VER}.${ARCH} \
                    cuda-libraries-${VER}.${ARCH} \
                    cuda-libraries-devel-${VER}.${ARCH}
-RUN dnf -y module install nvidia-driver:latest-dkms
 RUN dnf clean all
 RUN rm -rf /var/cache/dnf/*
 RUN echo "/usr/local/cuda/lib64" >> /etc/ld.so.conf.d/999_nvidia_cuda.conf

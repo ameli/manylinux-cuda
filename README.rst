@@ -1,10 +1,6 @@
 manylinux-cuda
 **************
 
-.. image:: https://github.com/ameli/manylinux-cuda/actions/workflows/deploy-docker-manylinux2014_x86_64_cuda_10.2.yml/badge.svg
-   :alt: GitHub Actions Workflow Status
-
-
 `manylinux <https://github.com/pypa/manylinux>`__ docker images featuring an installation of the **NVIDIA CUDA** compiler, runtime and development libraries, designed specifically for building Python wheels with a C++/CUDA backend.
 
 Download Images
@@ -91,7 +87,7 @@ The Docker images do not include the NVIDIA driver to prevent incompatibility is
 
 For users who might need specific components of the NVIDIA driver, such as ``libcuda.so``, to compile their code, there are two options:
 
-1. *Use the Host's Native Driver:* Add the ``--gpus all`` flag to your ``docker run`` command to enable the container to utilize the host’s GPU and driver (see `Use Host's GPU <using-hosts-gpu_>`_ for details). This is the recommended approach as it avoids compatibility issues between the container's and host's drivers.
+1. *Use the Host's Native Driver:* Add the ``--gpus all`` flag to your ``docker run`` command to enable the container to utilize the host’s GPU and driver (see `Use Host's GPU <use-hosts-gpu_>`_ for details). This is the recommended approach as it avoids compatibility issues between the container's and host's drivers.
 
 2. *Install the Driver in the Container:* If necessary, the driver can be installed within the container using the following commands, based on your image's base distribution:
 
@@ -149,10 +145,10 @@ The output of the above command is:
     Cuda compilation tools, release 12.0, V12.0.76
     Build cuda_12.3.r12.0/compiler.31968024_0
 
-.. _using-hosts-gpu:
+.. _use-hosts-gpu:
 
-Using Host's GPU
-================
+Use Host's GPU
+==============
 
 The primary purpose of these Docker images is to build code, such as Python wheels, using the *manylinux* standard. While this process does not require access to the host's GPU, you might want to use them at runtime on the host's GPU, particularly for testing purposes.
 
@@ -194,7 +190,7 @@ To check the host's NVIDIA driver version, CUDA runtime library version, and lis
 Troubleshooting
 ===============
 
-No space left on device
+No Space Left on Device
 -----------------------
 
 When running the docker containers in GitHub action, you may encounter this error:
@@ -213,7 +209,7 @@ To resolve this, try clearing the GitHub's runner cache before executing the doc
 Driver Conflict
 ---------------
 
-If you run the container with ``--gpus all`` to access the `host's GPU <using-hosts-gpu_>`_, conflicts may arise if you also `install an NVIDIA driver <install-nvidia-driver_>`_ within the container. This typically does not cause problems until you attempt to use the driver, such as by commands like ``nvidia-smi`` inside the container, which can lead to errors due to driver conflicts. To resolve this, ensure you use only one driver source. You can either rely solely on the host's driver by not installing a separate driver in the container, or refrain from using the host's GPU if you intend to install a driver in the container.
+If you run the container with ``--gpus all`` to access the `host's GPU <use-hosts-gpu_>`_, conflicts may arise if you also `install an NVIDIA driver <install-nvidia-driver_>`_ within the container. This typically does not cause problems until you attempt to use the driver, such as by commands like ``nvidia-smi`` inside the container, which can lead to errors due to driver conflicts. To resolve this, ensure you use only one driver source. You can either rely solely on the host's driver by not installing a separate driver in the container, or refrain from using the host's GPU if you intend to install a driver in the container.
 
 Other CUDA Versions
 ===================

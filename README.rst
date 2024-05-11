@@ -87,7 +87,7 @@ The Docker images do not include the NVIDIA driver to prevent incompatibility is
 
 For users who might need specific components of the NVIDIA driver, such as ``libcuda.so``, to compile their code, there are two options:
 
-1. *Use the Host's Native Driver:* Add the ``--gpus all`` flag to your ``docker run`` command to enable the container to utilize the host’s GPU and driver (see :ref:`Use Host's GPU <using-hosts-gpu>` for details). This is the recommended approach as it avoids compatibility issues between the container's and host's drivers.
+1. *Use the Host's Native Driver:* Add the ``--gpus all`` flag to your ``docker run`` command to enable the container to utilize the host’s GPU and driver (see `Use Host's GPU <using-hosts-gpu_>`_ for details). This is the recommended approach as it avoids compatibility issues between the container's and host's drivers.
 
 2. *Install the Driver in the Container:* If necessary, the driver can be installed within the container using the following commands, based on your image's base distribution:
 
@@ -209,7 +209,7 @@ To resolve this, try clearing the GitHub's runner cache before executing the doc
 Driver Conflict
 ---------------
 
-If you run the container with ``--gpus all`` to access the :ref:`host's GPU <using-hosts-gpu>`, conflicts may arise if you also :ref:`install an NVIDIA driver <install-nvidia-driver>` within the container. This typically does not cause problems until you attempt to use the driver, such as by commands like ``nvidia-smi`` inside the container, which can lead to errors due to driver conflicts. To resolve this, ensure you use only one driver source. You can either rely solely on the host's driver by not installing a separate driver in the container, or refrain from using the host's GPU if you intend to install a driver in the container.
+If you run the container with ``--gpus all`` to access the `host's GPU <using-hosts-gpu_>`_, conflicts may arise if you also :ref:`install an NVIDIA driver <install-nvidia-driver>` within the container. This typically does not cause problems until you attempt to use the driver, such as by commands like ``nvidia-smi`` inside the container, which can lead to errors due to driver conflicts. To resolve this, ensure you use only one driver source. You can either rely solely on the host's driver by not installing a separate driver in the container, or refrain from using the host's GPU if you intend to install a driver in the container.
 
 Other CUDA Versions
 ===================

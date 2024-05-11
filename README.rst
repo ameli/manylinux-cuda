@@ -1,7 +1,7 @@
 manylinux-cuda
 **************
 
-`manylinux <https://github.com/pypa/manylinux>`__ docker images featuring an installation of the **NVIDIA CUDA** compiler, runtime and development libraries, and the NVIDIA graphic driver, designed specifically for building Python wheels with a C++/CUDA backend.
+`manylinux <https://github.com/pypa/manylinux>`__ docker images featuring an installation of the **NVIDIA CUDA** compiler, runtime and development libraries, designed specifically for building Python wheels with a C++/CUDA backend.
 
 Download Images
 ===============
@@ -78,27 +78,33 @@ To maintain a minimal Docker image size, only the essential compilers and librar
 
 If you need additional packages from CUDA toolkit to be included in the images, please feel free to create a `GitHub issue <https://github.com/ameli/manylinux-cuda/issues>`__.
 
+.. _install-nvidia-driver:
+
 NVIDIA Driver
 =============
 
 The Docker images do not include the NVIDIA driver to prevent incompatibility issues with the host system's native driver when used at runtime.
 
-For users who might need specific components of the NVIDIA driver, such as ``libcuda.so``, to compile their code, the driver can be installed within the container using the following commands based on your image's base distribution:
+For users who might need specific components of the NVIDIA driver, such as ``libcuda.so``, to compile their code, there are two options:
 
-* For ``manylinux2`` images:
+1. *Use the Host's Native Driver:* Add the ``--gpus all`` flag to your ``docker run`` command to enable the container to utilize the host’s GPU and driver (see :ref:`Use Host's GPU <using-hosts-gpu>` for details). This is the recommended approach as it avoids compatibility issues between the container's and host's drivers.
 
-  ::
+2. *Install the Driver in the Container:* If necessary, the driver can be installed within the container using the following commands, based on your image's base distribution:
 
-      dnf -y install epel-release
-      dnf -y module install nvidia-driver:latest-dkms
-
-* For ``manylinux2014`` images:
-
-  ::
-
-      yum install nvidia-driver-latest-dkms
-
-Note, however, that this step should generally be avoided unless strictly required, as it may lead to compatibility issues between the driver versions in the container and on the host system. If possible, it is recommended to rely on the host system's driver installation when running containers that require GPU access.
+   * For ``manylinux_2`` images:
+   
+     ::
+   
+         dnf -y install epel-release
+         dnf -y module install nvidia-driver:latest-dkms
+   
+   * For ``manylinux2014`` images:
+   
+     ::
+   
+         yum install nvidia-driver-latest-dkms
+   
+   Note, however, that this step should generally be avoided unless strictly required, as it may lead to compatibility issues between the driver versions in the container and on the host system. If possible, it is recommended to rely on the host system's driver installation when running containers that require GPU access.
 
 Environment Variables
 =====================
@@ -139,12 +145,14 @@ The output of the above command is:
     Cuda compilation tools, release 12.0, V12.0.76
     Build cuda_12.3.r12.0/compiler.31968024_0
 
+.. _using-hosts-gpu:
+
 Using Host's GPU
 ================
 
 The primary purpose of these Docker images is to build code, such as Python wheels, using the *manylinux* standard. While this process does not require access to the host's GPU, you might want to use them at runtime on the host's GPU, particularly for testing purposes.
 
-To access host's GPU device from the container, install *Nvidia Container Toolkit* as follows.
+To access host's GPU device from the container, install `NVIDIA Container Toolkit <https://docs.nvidia.com/datacenter/cloud-native/container-toolkit/latest/install-guide.html>`__ as follows.
 
 1. Add the package to the repository:
 
@@ -182,6 +190,9 @@ To check the host's NVIDIA driver version, CUDA runtime library version, and lis
 Troubleshooting
 ===============
 
+No space left on device
+-----------------------
+
 When running the docker containers in GitHub action, you may encounter this error:
 
 ::
@@ -194,6 +205,11 @@ To resolve this, try clearing the GitHub's runner cache before executing the doc
 
     - name: Clear Cache
       run: rm -rf /opt/hostedtoolcache
+
+Driver Conflict
+---------------
+
+If you run the container with ``--gpus all`` to access the :ref:`host's GPU <using-hosts-gpu>`, conflicts may arise if you also :ref:`install an NVIDIA driver <install-nvidia-driver>` within the container. This typically does not cause problems until you attempt to use the driver, such as by commands like ``nvidia-smi`` inside the container, which can lead to errors due to driver conflicts. To resolve this, ensure you use only one driver source. You can either rely solely on the host's driver by not installing a separate driver in the container, or refrain from using the host's GPU if you intend to install a driver in the container.
 
 Other CUDA Versions
 ===================

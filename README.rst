@@ -1,6 +1,10 @@
 manylinux-cuda
 **************
 
+.. image:: https://img.shields.io/github/actions/workflow/status/ameli/manylinux-cuda/deploy-docker-manylinux2014_x86_64_cuda_10.2.yml
+   :alt: GitHub Actions Workflow Status
+
+
 `manylinux <https://github.com/pypa/manylinux>`__ docker images featuring an installation of the **NVIDIA CUDA** compiler, runtime and development libraries, designed specifically for building Python wheels with a C++/CUDA backend.
 
 Download Images

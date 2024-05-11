@@ -209,7 +209,7 @@ To resolve this, try clearing the GitHub's runner cache before executing the doc
 Driver Conflict
 ---------------
 
-If you run the container with ``--gpus all`` to access the `host's GPU <using-hosts-gpu_>`_, conflicts may arise if you also :ref:`install an NVIDIA driver <install-nvidia-driver>` within the container. This typically does not cause problems until you attempt to use the driver, such as by commands like ``nvidia-smi`` inside the container, which can lead to errors due to driver conflicts. To resolve this, ensure you use only one driver source. You can either rely solely on the host's driver by not installing a separate driver in the container, or refrain from using the host's GPU if you intend to install a driver in the container.
+If you run the container with ``--gpus all`` to access the `host's GPU <using-hosts-gpu_>`_, conflicts may arise if you also `install an NVIDIA driver <install-nvidia-driver_>`_ within the container. This typically does not cause problems until you attempt to use the driver, such as by commands like ``nvidia-smi`` inside the container, which can lead to errors due to driver conflicts. To resolve this, ensure you use only one driver source. You can either rely solely on the host's driver by not installing a separate driver in the container, or refrain from using the host's GPU if you intend to install a driver in the container.
 
 Other CUDA Versions
 ===================

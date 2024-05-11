@@ -1,7 +1,7 @@
 manylinux-cuda
 **************
 
-.. image:: ttps://github.com/ameli/manylinux-cuda/actions/workflows/deploy-docker-manylinux2014_x86_64_cuda_10.2.yml/badge.svg
+.. image:: https://github.com/ameli/manylinux-cuda/actions/workflows/deploy-docker-manylinux2014_x86_64_cuda_10.2.yml/badge.svg
    :alt: GitHub Actions Workflow Status
 
 

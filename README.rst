@@ -11,6 +11,12 @@ Obtain the docker images from Docker Hub for the following CUDA versions:
 X86_64 Architecture
 -------------------
 
+* **manylinux_2_34** on **X86_64** arch with CUDA **12.6** (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux_2_34_x86_64_cuda_12.6>`__) |deploy-docker-manylinux_2_34_x86_64_cuda_12.6|
+
+  ::
+
+      docker pull sameli/manylinux_2_34_x86_64_cuda_12.6
+
 * **manylinux_2_28** on **X86_64** arch with CUDA **12.3** (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux_2_28_x86_64_cuda_12.3>`__) |deploy-docker-manylinux_2_28_x86_64_cuda_12.3|
 
   ::
@@ -62,6 +68,7 @@ Base of Images
 
 The docker images were built based on the following images:
 
+* **manylinux_2_34** on **X86_64** architecture is based on: `quay.io/pypa/manylinux_2_34_x86_64 <https://github.com/pypa/manylinux>`__
 * **manylinux_2_28** on **X86_64** architecture is based on: `quay.io/pypa/manylinux_2_28_x86_64 <https://github.com/pypa/manylinux>`__
 * **manylinux_2_28** on **AARCH64** architecture is based on: `quay.io/pypa/manylinux_2_28_aarch64 <https://github.com/pypa/manylinux>`__
 * **manylinux2014** on **X86_64** architecture is based on: `quay.io/pypa/manylinux2014_x86_64 <https://github.com/pypa/manylinux>`__
@@ -236,6 +243,8 @@ License
    :target: https://github.com/ameli/manylinux-cuda/actions/workflows/deploy-docker-manylinux2014_x86_64_cuda_12.3.yml
 .. |deploy-docker-manylinux_2_28_x86_64_cuda_12.3| image:: https://img.shields.io/github/actions/workflow/status/ameli/manylinux-cuda/deploy-docker-manylinux_2_28_x86_64_cuda_12.3.yml?label=build%20docker
    :target: https://github.com/ameli/manylinux-cuda/actions/workflows/deploy-docker-manylinux_2_28_x86_64_cuda_12.3.yml
+.. |deploy-docker-manylinux_2_34_x86_64_cuda_12.6| image:: https://img.shields.io/github/actions/workflow/status/ameli/manylinux-cuda/deploy-docker-manylinux_2_34_x86_64_cuda_12.6.yml?label=build%20docker
+   :target: https://github.com/ameli/manylinux-cuda/actions/workflows/deploy-docker-manylinux_2_34_x86_64_cuda_12.6.yml
 .. |deploy-docker-manylinux2014_aarch64_cuda_12_3| image:: https://img.shields.io/cirrus/github/ameli/manylinux-cuda/main?label=build%20docker
    :target: https://cirrus-ci.com/github/ameli/manylinux-cuda
 .. |deploy-docker-manylinux_2_28_aarch64_cuda_12_3| image:: https://img.shields.io/cirrus/github/ameli/manylinux-cuda/main?label=build%20docker
@@ -253,6 +262,8 @@ License
    :target: https://hub.docker.com/r/sameli/manylinux2014_x86_64_cuda_12.3
 .. |docker-pull-manylinux_2_28_x86_64_cuda_12.3| image:: https://img.shields.io/docker/pulls/sameli/manylinux_2_28_x86_64_cuda_12.3?color=green&label=downloads
    :target: https://hub.docker.com/r/sameli/manylinux_2_28_x86_64_cuda_12.3
+.. |docker-pull-manylinux_2_34_x86_64_cuda_12.6| image:: https://img.shields.io/docker/pulls/sameli/manylinux_2_34_x86_64_cuda_12.6?color=green&label=downloads
+   :target: https://hub.docker.com/r/sameli/manylinux_2_34_x86_64_cuda_12.6
 .. |docker-pull-manylinux2014_aarch64_cuda_12_3| image:: https://img.shields.io/docker/pulls/sameli/manylinux2014_aarch64_cuda_12.3?color=green&label=downloads
    :target: https://hub.docker.com/r/sameli/manylinux2014_aarch64_cuda_12.3
 .. |docker-pull-manylinux_2_28_aarch64_cuda_12_3| image:: https://img.shields.io/docker/pulls/sameli/manylinux_2_28_aarch64_cuda_12.3?color=green&label=downloads

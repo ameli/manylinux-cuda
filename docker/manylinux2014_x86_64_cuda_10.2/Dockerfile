@@ -52,8 +52,8 @@ ENV CUDADIR=/usr/local/cuda-10.2
 # ------------------
 
 # Cuda 10 is not compatible with gcc version higher than 8.
-RUN sed -i 's|^mirrorlist=.*|baseurl=http://vault.centos.org/centos/7/sclo/x86_64/sclo/|' /etc/yum.repos.d/CentOS-SCLo-scl.repo && yum clean all
 RUN yum -y install centos-release-scl
+RUN sed -i 's|^mirrorlist=.*|baseurl=http://vault.centos.org/centos/7/sclo/x86_64/sclo/|' /etc/yum.repos.d/CentOS-SCLo-scl.repo && yum clean all
 RUN yum -y install devtoolset-8-gcc devtoolset-8-gcc-c++
 # RUN ln -s /opt/rh/devtoolset-8/root/bin/gcc /usr/local/cuda/bin/gcc
 # RUN ln -s /opt/rh/devtoolset-8/root/bin/g++ /usr/local/cuda/bin/g++

@@ -8,10 +8,10 @@
 
 
 # ====================================
-# manylinux2014 aarch64 cuda 12.3 cibw
+# manylinux2014 aarch64 cuda 12.8 cibw
 # ====================================
 
-manylinux2014_aarch64_cuda_12_3_cibw: &MANYLINUX2014_AARCH64_CUDA_12_3_CIBW
+manylinux2014_aarch64_cuda_12_8_cibw: &MANYLINUX2014_AARCH64_CUDA_12_8_CIBW
   install_cibuildwheel_script:
     - python -m pip install cibuildwheel
   cibuildwheel_script:
@@ -21,10 +21,10 @@ manylinux2014_aarch64_cuda_12_3_cibw: &MANYLINUX2014_AARCH64_CUDA_12_3_CIBW
 
 
 # ============================================
-# build docker manylinux2014 aarch64 cuda 12-3
+# build docker manylinux2014 aarch64 cuda 12-8
 # ============================================
 
-build_docker_manylinux2014_aarch64_cuda_12_3_task:
+build_docker_manylinux2014_aarch64_cuda_12_8_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   compute_engine_instance:
     image_project: cirrus-images
@@ -43,7 +43,7 @@ build_docker_manylinux2014_aarch64_cuda_12_3_task:
     install_docker
 
     # Build source
-    docker build -t sameli/manylinux2014_aarch64_cuda_12.3 -f ./docker/manylinux2014_aarch64_cuda_12.3/Dockerfile .
+    docker build -t sameli/manylinux2014_aarch64_cuda_12.8 -f ./docker/manylinux2014_aarch64_cuda_12.8/Dockerfile .
 
     docker images
 
@@ -52,14 +52,14 @@ build_docker_manylinux2014_aarch64_cuda_12_3_task:
     docker login --username ${DOCKERHUB_USERNAME} --password ${DOCKERHUB_TOKEN}
 
     # Upload to dockerhub
-    docker push sameli/manylinux2014_aarch64_cuda_12.3
+    docker push sameli/manylinux2014_aarch64_cuda_12.8
 
 
-# ============================================
-# test docker manylinux2014 aarch64 cuda 12-3
-# ============================================
+# ===========================================
+# test docker manylinux2014 aarch64 cuda 12-8
+# ===========================================
 
-test_docker_manylinux2014_aarch64_cuda_12_3_task:
+test_docker_manylinux2014_aarch64_cuda_12_8_task:
   use_compute_credits: $CIRRUS_USER_COLLABORATOR == 'true'
   compute_engine_instance:
     image_project: cirrus-images
@@ -69,7 +69,7 @@ test_docker_manylinux2014_aarch64_cuda_12_3_task:
     cpu: 1
     memory: 8G
   depends_on:
-    - build_docker_manylinux2014_aarch64_cuda_12_3
+    - build_docker_manylinux2014_aarch64_cuda_12_8
 
   test_script: |
 
@@ -78,4 +78,4 @@ test_docker_manylinux2014_aarch64_cuda_12_3_task:
     install_docker
 
     # Test dockerhub image
-    docker run -t sameli/manylinux2014_aarch64_cuda_12.3 nvcc --version
+    docker run -t sameli/manylinux2014_aarch64_cuda_12.8 nvcc --version

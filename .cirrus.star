@@ -12,7 +12,7 @@ load("cirrus", "env", "fs", "http")
 def main(ctx):
 
     file = ''
-    # file += fs.read("tools/ci/cirrus_deploy_docker_manylinux2014_aarch64_cuda_12.3.yml")
-    # file += fs.read("tools/ci/cirrus_deploy_docker_manylinux_2_28_aarch64_cuda_12.3.yml")
+    file += fs.read("tools/ci/cirrus_deploy_docker_manylinux2014_aarch64_cuda_12.8.yml")
+    file += fs.read("tools/ci/cirrus_deploy_docker_manylinux_2_34_aarch64_cuda_12.8.yml")
 
     return file

@@ -51,7 +51,7 @@ X86_64 Architecture
 AARCH64 Architecture
 --------------------
 
-* **manylinux_2_34** on **AARCH64** arch with CUDA **12.8** (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux_2_34_aarch64_cuda_12.3>`__) |deploy-docker-manylinux_2_34_aarch64_cuda_12_8|
+* **manylinux_2_34** on **AARCH64** arch with CUDA **12.8** (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux_2_34_aarch64_cuda_12.8>`__) |deploy-docker-manylinux_2_34_aarch64_cuda_12_8|
 
   ::
 
@@ -61,7 +61,7 @@ AARCH64 Architecture
 
   ::
 
-      docker pull sameli/manylinux2014_x86_64_cuda_12.3
+      docker pull sameli/manylinux2014_x86_64_cuda_12.8
 
 Base of Images
 ==============

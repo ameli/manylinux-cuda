@@ -149,8 +149,8 @@ The output of the above command is:
 
     Copyright (c) 2005-2022 NVIDIA Corporation
     Built on Mon_Oct_24_19:12:58_PDT_2022
-    Cuda compilation tools, release 12.0, V12.0.76
-    Build cuda_12.8.r12.0/compiler.31968024_0
+    Cuda compilation tools, release 12.8, V12.8.76
+    Build cuda_12.8.r12.8/compiler.31968024_0
 
 .. _use-hosts-gpu:
 

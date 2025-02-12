@@ -20,6 +20,6 @@ services:
         build: ./docker/manylinux_2_28_x86_64_cuda_12.3
         image: sameli/manylinux_2_28_x86_64_cuda_12.3
 
-    manylinux_2_34_x86_64_cuda_12.6:
-        build: ./docker/manylinux_2_34_x86_64_cuda_12.6
-        image: sameli/manylinux_2_34_x86_64_cuda_12.6
+    manylinux_2_34_x86_64_cuda_12.8:
+        build: ./docker/manylinux_2_34_x86_64_cuda_12.8
+        image: sameli/manylinux_2_34_x86_64_cuda_12.8

@@ -247,7 +247,7 @@ License
    :target: https://github.com/ameli/manylinux-cuda/actions/workflows/deploy-docker-manylinux_2_34_x86_64_cuda_12.8.yml
 .. |deploy-docker-manylinux2014_aarch64_cuda_12_8| image:: https://img.shields.io/cirrus/github/ameli/manylinux-cuda/main?label=build%20docker
    :target: https://cirrus-ci.com/github/ameli/manylinux-cuda
-.. |deploy-docker-manylinux_2_28_aarch64_cuda_12_8| image:: https://img.shields.io/cirrus/github/ameli/manylinux-cuda/main?label=build%20docker
+.. |deploy-docker-manylinux_2_34_aarch64_cuda_12_8| image:: https://img.shields.io/cirrus/github/ameli/manylinux-cuda/main?label=build%20docker
    :target: https://cirrus-ci.com/github/ameli/manylinux-cuda
 
 .. |docker-pull-manylinux2014_x86_64_cuda_10_2| image:: https://img.shields.io/docker/pulls/sameli/manylinux2014_x86_64_cuda_10.2?color=green&label=downloads

@@ -1,9 +1,9 @@
 name: deploy-docker-manylinux_2_28_x86_64_cuda_12.3
 
 on:
-    push:
-        branches:
-            - main
+    # push:
+    #     branches:
+    #         - main
     release:
         types: 
             - published

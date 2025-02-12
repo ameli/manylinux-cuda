@@ -132,7 +132,7 @@ Run containers in interactive mode by:
 
 ::
 
-    docker run -it sameli/manylinux_2_28_x86_64_cuda_12.3
+    docker run -it sameli/manylinux_2_34_x86_64_cuda_12.8
 
 Check CUDA Version
 ==================
@@ -141,7 +141,7 @@ The ``nvcc`` executable is available on the ``PATH``. To check the CUDA version,
 
 ::
 
-    docker run -t sameli/manylinux_2_28_x86_64_cuda_12.3 nvcc --version
+    docker run -t sameli/manylinux_2_34_x86_64_cuda_12.8 nvcc --version
     
 The output of the above command is:
 
@@ -150,7 +150,7 @@ The output of the above command is:
     Copyright (c) 2005-2022 NVIDIA Corporation
     Built on Mon_Oct_24_19:12:58_PDT_2022
     Cuda compilation tools, release 12.0, V12.0.76
-    Build cuda_12.3.r12.0/compiler.31968024_0
+    Build cuda_12.8.r12.0/compiler.31968024_0
 
 .. _use-hosts-gpu:
 
@@ -185,13 +185,13 @@ To use host's GPU, add  ``--gpus all`` to any of the docker commands given befor
 
 ::
 
-    docker run --gpus all -it sameli/manylinux_2_28_x86_64_cuda_12.3
+    docker run --gpus all -it sameli/manylinux_2_34_x86_64_cuda_12.8
 
 To check the host's NVIDIA driver version, CUDA runtime library version, and list of available GPU devices, run ``nvida-smi`` command, such as by:
 
 ::
 
-    docker run --gpus all sameli/manylinux_2_28_x86_64_cuda_12.3 nvidia-smi
+    docker run --gpus all sameli/manylinux_2_34_x86_64_cuda_12.8 nvidia-smi
 
 
 Troubleshooting

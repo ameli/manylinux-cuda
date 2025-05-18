@@ -4,11 +4,11 @@
 
 # -----------------------------------------------------------------------------
 # How to build
-#   $ docker build -t sameli/manylinux2014_aarch64_cuda_12.8 -f <This-Filename> .
+#   $ docker build -t sameli/manylinux2014_aarch64_cuda_12.9 -f <This-Filename> .
 #
 # How to run:
 #   $ docker run -it -v/host_dir:/image_dir --entrypoint /bin/bash \
-#         manylinux2014_aarch64_cuda_12.8
+#         manylinux2014_aarch64_cuda_12.9
 # -----------------------------------------------------------------------------
 
 # -----------------
@@ -18,13 +18,13 @@
 FROM quay.io/pypa/manylinux2014_aarch64
 
 MAINTAINER Siavash Ameli <samei@berkeley.edu>
-LABEL Description="manylinux2014_aarch64 with cuda 12.8"
+LABEL Description="manylinux2014_aarch64 with cuda 12.9"
 
 # ------------
 # Install cuda
 # ------------
 
-ARG VER="12-8"
+ARG VER="12-9"
 ARG ARCH="aarch64"
 
 RUN yum install -y yum-utils

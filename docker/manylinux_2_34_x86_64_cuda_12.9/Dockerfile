@@ -4,42 +4,40 @@
 
 # -----------------------------------------------------------------------------
 # How to build
-# $ docker build -t sameli/manylinux2014_aarch64_cuda_12.9 -f docker/manylinux2014_aarch64_cuda_12.9/Dockerfile .
+# $ docker build -t sameli/manylinux_2_34_x86_64_cuda_12.9 -f docker/manylinux_2_34_x86_64_cuda_12.9/Dockerfile .
 #
 # How to run:
-# $ docker run -v$PWD:/host --rm --name cuda -it sameli/manylinux2014_aarch64_cuda_12.9
+# $ docker run -v$PWD:/host --rm --name cuda -it sameli/manylinux_2_34_x86_64_cuda_12.9
 # -----------------------------------------------------------------------------
 
 # -----------------
 # Choose base image
 # -----------------
 
-FROM quay.io/pypa/manylinux2014_aarch64
+FROM quay.io/pypa/manylinux_2_34_x86_64
 
 LABEL org.opencontainers.image.authors="Siavash Ameli <samei@berkeley.edu>"
 LABEL org.opencontainers.image.licenses="BSD-3-Clause"
 LABEL org.opencontainers.image.source="https://github.com/ameli/manylinux-cuda"
-LABEL org.opencontainers.image.version="12.9-aarch64"
-LABEL org.opencontainers.image.description="manylinux2014_aarch64 with cuda 12.9"
-LABEL org.opencontainers.image.base.name="quay.io/pypa/manylinux2014_aarch64"
+LABEL org.opencontainers.image.version="12.9-x86_64"
+LABEL org.opencontainers.image.description="manylinux_2_34_x86_64 with cuda 12.9"
+LABEL org.opencontainers.image.base.name="quay.io/pypa/manylinux_2_34_x86_64"
 
 # ------------
 # Install cuda
 # ------------
 
 ARG VER="12-9"
-ARG ARCH="aarch64"
+ARG ARCH="x86_64"
 
-RUN yum install -y yum-utils
-RUN yum-config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel9/sbsa/cuda-rhel9.repo
-RUN yum makecache \
- && yum -y install \
-        cuda-compiler-${VER}.${ARCH} \
-        cuda-libraries-${VER}.${ARCH} \
-        cuda-libraries-devel-${VER}.${ARCH} \
- && yum -y erase yum-utils \
- && yum clean all \
- && rm -rf /var/cache/yum/* \
+RUN dnf config-manager --add-repo https://developer.download.nvidia.com/compute/cuda/repos/rhel9/x86_64/cuda-rhel9.repo
+RUN dnf update \
+ && dnf -y install \
+    cuda-compiler-${VER}.${ARCH} \
+    cuda-libraries-${VER}.${ARCH} \
+    cuda-librar ies-devel-${VER}.${ARCH} \
+ && dnf clean all \
+ && rm -rf /var/cache/dnf/* \
  && echo "/usr/local/cuda/lib64" >> /etc/ld.so.conf.d/999_nvidia_cuda.conf
 
 # ---------------------------------------

@@ -1,0 +1,17 @@
+# https://developer.nvidia.com/cuda-toolkit-archive
+
+version: 2
+updates:
+  - package-ecosystem: docker
+    directories:
+      - docker/manylinux*
+    schedule:
+      interval: weekly
+  - package-ecosystem: docker-compose
+    directory: /
+    schedule:
+      interval: weekly
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly

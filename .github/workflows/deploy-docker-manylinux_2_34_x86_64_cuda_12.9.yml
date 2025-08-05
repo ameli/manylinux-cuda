@@ -24,7 +24,7 @@ jobs:
 
             - name: Build and push manylinux_2_34_x86_64_cuda-12.9
               id: docker_build
-              uses: docker/build-push-action@v5
+              uses: docker/build-push-action@v6
               with:
                   push: true
                   file: ./docker/manylinux_2_34_x86_64_cuda_12.9/Dockerfile

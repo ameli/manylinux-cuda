@@ -11,6 +11,12 @@ Obtain the docker images from Docker Hub for the following CUDA versions:
 X86_64 Architecture
 -------------------
 
+* **manylinux_2_34** on **X86_64** arch with CUDA **13.0** (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux_2_34_x86_64_cuda_13.0>`__) |deploy-docker-manylinux_2_34_x86_64_cuda_13.0|
+
+  ::
+
+      docker pull sameli/manylinux_2_34_x86_64_cuda_13.0
+
 * **manylinux_2_34** on **X86_64** arch with CUDA **12.9** (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux_2_34_x86_64_cuda_12.9>`__) |deploy-docker-manylinux_2_34_x86_64_cuda_12.9|
 
   ::
@@ -57,17 +63,17 @@ X86_64 Architecture
 AARCH64 Architecture
 --------------------
 
-* **manylinux_2_34** on **AARCH64** arch with CUDA **12.9** (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux_2_34_aarch64_cuda_12.9>`__) |deploy-docker-manylinux_2_34_aarch64_cuda_12_9|
+* **manylinux_2_34** on **AARCH64** arch with CUDA **13.0** (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux_2_34_aarch64_cuda_13.0>`__) |deploy-docker-manylinux_2_34_aarch64_cuda_13_0|
 
   ::
 
-      docker pull sameli/manylinux_2_34_x86_64_cuda_12.9
+      docker pull sameli/manylinux_2_34_x86_64_cuda_13.0
 
-* **manylinux2014** on **AARCH64** arch with CUDA **12.9** (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_aarch64_cuda_12.9>`__) |deploy-docker-manylinux2014_aarch64_cuda_12_9|
+* **manylinux2014** on **AARCH64** arch with CUDA **13.0** (`see on Dockerhub <https://hub.docker.com/r/sameli/manylinux2014_aarch64_cuda_13.0>`__) |deploy-docker-manylinux2014_aarch64_cuda_13_0|
 
   ::
 
-      docker pull sameli/manylinux2014_x86_64_cuda_12.8
+      docker pull sameli/manylinux2014_x86_64_cuda_13.0
 
 Base of Images
 ==============
@@ -138,7 +144,7 @@ Run containers in interactive mode by:
 
 ::
 
-    docker run -it sameli/manylinux_2_34_x86_64_cuda_12.9
+    docker run -it sameli/manylinux_2_34_x86_64_cuda_13.0
 
 Check CUDA Version
 ==================
@@ -147,16 +153,16 @@ The ``nvcc`` executable is available on the ``PATH``. To check the CUDA version,
 
 ::
 
-    docker run -t sameli/manylinux_2_34_x86_64_cuda_12.9 nvcc --version
+    docker run -t sameli/manylinux_2_34_x86_64_cuda_13.0 nvcc --version
     
 The output of the above command is:
 
 ::
 
-    Copyright (c) 2005-2025 NVIDIA Corporation
-    Built on Tue_May_27_02:21:03_PDT_2025
-    Cuda compilation tools, release 12.9, V12.9.86
-    Build cuda_12.9.r12.9/compiler.36037853_0
+    Copyright (c) 2005-2026 NVIDIA Corporation
+    Built on Tue_May_27_02:21:03_PDT_2026
+    Cuda compilation tools, release 12.9, V13.0.86
+    Build cuda_13.0.r13.0/compiler.36037853_0
 
 .. _use-hosts-gpu:
 
@@ -191,13 +197,13 @@ To use host's GPU, add  ``--gpus all`` to any of the docker commands given befor
 
 ::
 
-    docker run --gpus all -it sameli/manylinux_2_34_x86_64_cuda_12.9
+    docker run --gpus all -it sameli/manylinux_2_34_x86_64_cuda_13.0
 
 To check the host's NVIDIA driver version, CUDA runtime library version, and list of available GPU devices, run ``nvida-smi`` command, such as by:
 
 ::
 
-    docker run --gpus all sameli/manylinux_2_34_x86_64_cuda_12.9 nvidia-smi
+    docker run --gpus all sameli/manylinux_2_34_x86_64_cuda_13.0 nvidia-smi
 
 
 Troubleshooting
@@ -253,9 +259,11 @@ License
    :target: https://github.com/ameli/manylinux-cuda/actions/workflows/deploy-docker-manylinux_2_34_x86_64_cuda_12.8.yml
 .. |deploy-docker-manylinux_2_34_x86_64_cuda_12.9| image:: https://img.shields.io/github/actions/workflow/status/ameli/manylinux-cuda/deploy-docker-manylinux_2_34_x86_64_cuda_12.9.yml?label=build%20docker
    :target: https://github.com/ameli/manylinux-cuda/actions/workflows/deploy-docker-manylinux_2_34_x86_64_cuda_12.9.yml
-.. |deploy-docker-manylinux2014_aarch64_cuda_12_9| image:: https://img.shields.io/cirrus/github/ameli/manylinux-cuda/main?label=build%20docker
+.. |deploy-docker-manylinux_2_34_x86_64_cuda_13.0| image:: https://img.shields.io/github/actions/workflow/status/ameli/manylinux-cuda/deploy-docker-manylinux_2_34_x86_64_cuda_13.0.yml?label=build%20docker
+   :target: https://github.com/ameli/manylinux-cuda/actions/workflows/deploy-docker-manylinux_2_34_x86_64_cuda_13.0.yml
+.. |deploy-docker-manylinux2014_aarch64_cuda_13_0| image:: https://img.shields.io/cirrus/github/ameli/manylinux-cuda/main?label=build%20docker
    :target: https://cirrus-ci.com/github/ameli/manylinux-cuda
-.. |deploy-docker-manylinux_2_34_aarch64_cuda_12_9| image:: https://img.shields.io/cirrus/github/ameli/manylinux-cuda/main?label=build%20docker
+.. |deploy-docker-manylinux_2_34_aarch64_cuda_13_0| image:: https://img.shields.io/cirrus/github/ameli/manylinux-cuda/main?label=build%20docker
    :target: https://cirrus-ci.com/github/ameli/manylinux-cuda
 
 .. |docker-pull-manylinux2014_x86_64_cuda_10_2| image:: https://img.shields.io/docker/pulls/sameli/manylinux2014_x86_64_cuda_10.2?color=green&label=downloads
@@ -274,7 +282,9 @@ License
    :target: https://hub.docker.com/r/sameli/manylinux_2_34_x86_64_cuda_12.8
 .. |docker-pull-manylinux_2_34_x86_64_cuda_12.9| image:: https://img.shields.io/docker/pulls/sameli/manylinux_2_34_x86_64_cuda_12.9?color=green&label=downloads
    :target: https://hub.docker.com/r/sameli/manylinux_2_34_x86_64_cuda_12.9
-.. |docker-pull-manylinux2014_aarch64_cuda_12_9| image:: https://img.shields.io/docker/pulls/sameli/manylinux2014_aarch64_cuda_12.9?color=green&label=downloads
-   :target: https://hub.docker.com/r/sameli/manylinux2014_aarch64_cuda_12.9
-.. |docker-pull-manylinux_2_34_aarch64_cuda_12_9| image:: https://img.shields.io/docker/pulls/sameli/manylinux_2_34_aarch64_cuda_12.9?color=green&label=downloads
-   :target: https://hub.docker.com/r/sameli/manylinux_2_34_aarch64_cuda_12.9
+.. |docker-pull-manylinux_2_34_x86_64_cuda_13.0| image:: https://img.shields.io/docker/pulls/sameli/manylinux_2_34_x86_64_cuda_13.0?color=green&label=downloads
+   :target: https://hub.docker.com/r/sameli/manylinux_2_34_x86_64_cuda_13.0
+.. |docker-pull-manylinux2014_aarch64_cuda_13_0| image:: https://img.shields.io/docker/pulls/sameli/manylinux2014_aarch64_cuda_13.0?color=green&label=downloads
+   :target: https://hub.docker.com/r/sameli/manylinux2014_aarch64_cuda_13.0
+.. |docker-pull-manylinux_2_34_aarch64_cuda_13_0| image:: https://img.shields.io/docker/pulls/sameli/manylinux_2_34_aarch64_cuda_13.0?color=green&label=downloads
+   :target: https://hub.docker.com/r/sameli/manylinux_2_34_aarch64_cuda_13.0
